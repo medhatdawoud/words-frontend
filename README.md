@@ -1,2 +1,3 @@
 # Words Frontend
- the front end of the words project to learn any languages by words
+
+ Frontend site for words application to learn any language words with pictures
