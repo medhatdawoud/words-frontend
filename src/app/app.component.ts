@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AddWordComponent } from './components';
 
 @Component({
   selector: 'app-root',

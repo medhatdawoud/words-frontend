@@ -1,0 +1,1 @@
+export { AddWordComponent } from './add-word/add-word.component';
