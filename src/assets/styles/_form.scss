@@ -1,0 +1,31 @@
+form {
+    .form-group {
+        margin-bottom: 10px;
+        position: relative;
+
+        label {
+            position: absolute;
+            top: 12.5px;
+            left: 15px;
+            font-size: 18px;
+            line-height: 30px;
+            margin-bottom: 0px;
+        }
+
+        input {
+            &.form-control {
+                padding: 25px 15px 0px;
+                line-height: 30px;
+            }
+
+            &:focus , &:valid {
+                & + label {
+                    font-size: 12px;
+                    color: $bw-blue;
+                    top: 5px;
+                }
+            }
+        }
+
+    }
+}
