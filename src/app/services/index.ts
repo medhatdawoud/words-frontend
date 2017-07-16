@@ -1,0 +1,1 @@
+export { WordService } from './word.service';

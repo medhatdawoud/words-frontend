@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AddWordComponent } from './components/add-word/add-word.component';
-import { WordListComponent } from './components/word-list/word-list.component';
+import { AddWordComponent, WordListComponent } from './components';
+import { WordService } from './services';
 
 @NgModule({
   declarations: [
@@ -12,9 +14,13 @@ import { WordListComponent } from './components/word-list/word-list.component';
     WordListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    WordService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
