@@ -7,12 +7,29 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WordService {
-  apiUrl = "https://beeswords.herokuapp.com/api/word";
+  apiUrl = "https://beeswords.herokuapp.com/";
 
   constructor(private http: Http) { }
 
   getAllWords() {
-    return this.http.get(this.apiUrl)
+    return this.http.get(this.apiUrl + "api/word")
+      .map(this.extractRequiredData)
+      .catch(this.handleError);
+  }
+
+  addNewWord(oneWord) {
+    return this.http.post(this.apiUrl + "api/word", {
+      lang: oneWord.lang,
+      word: oneWord.word,
+      type: oneWord.type,
+      adjective: oneWord.adjective,
+      description: oneWord.desc,
+      soundUrl: oneWord.soundUrl,
+      tags: oneWord.tags,
+      videos: oneWord.videos,
+      examples: oneWord.examples,
+      images: oneWord.images
+    })
       .map(this.extractRequiredData)
       .catch(this.handleError);
   }
