@@ -25,10 +25,10 @@ export class WordService {
       adjective: oneWord.adjective,
       description: oneWord.desc,
       soundUrl: oneWord.soundUrl,
-      tags: oneWord.tags,
-      videos: oneWord.videos,
-      examples: oneWord.examples,
-      images: oneWord.images
+      tags: [oneWord.tags],
+      videos: [oneWord.videos],
+      examples: [oneWord.examples],
+      images: [oneWord.images]
     })
       .map(this.extractRequiredData)
       .catch(this.handleError);
