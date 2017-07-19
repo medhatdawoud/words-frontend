@@ -1,39 +1,39 @@
 <h1>New Word</h1>
 <form action="">
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="lang" class="form-control" [(ngModel)]="word.lang" required />
     <label for="">Language</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
     <label for="">Word</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="adjective" class="form-control" [(ngModel)]="word.adjective" required />
     <label for="">Adjective</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
     <label for="">Type</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="description" class="form-control" [(ngModel)]="word.description" required />
     <label for="">Description</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="soundUrl" class="form-control" [(ngModel)]="word.soundUrl" required />
     <label for="">Sound Url</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="images" class="form-control" [(ngModel)]="word.images" required />
     <label for="">Images Urls</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="examples" class="form-control" [(ngModel)]="word.examples" required />
     <label for="">Examples</label>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" required />
+    <input type="text" name="videos" class="form-control" [(ngModel)]="word.videos" required />
     <label for="">Videos</label>
   </div>
   <div class="form-group text-right">
