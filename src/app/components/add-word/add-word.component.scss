@@ -9,20 +9,29 @@
     }
 
     .dropdown-languages {
-        min-width: 8.2rem;
+        min-width: 7.8rem;
 
         .lang {
-            padding: 0px 10px;
+            padding: 5px 10px;
             font-family: arial;
             font-size: 14px;
             line-height: 14px;
             display: block;
 
-            &.lang-en_US {
-                &:before {
-                    content: "🇺🇸";
-                    margin-right: 10px;
-                }
+            &:hover {
+                background: $bw-grey-01;
+            }
+
+            &.lang-en_US:before {
+                content: "🇺🇸 ";
+            }
+
+            &.lang-ar_EG:before {
+                content: "🇪🇬 ";
+            }
+
+            &.lang-nl_NL:before {
+                content: "🇳🇱 ";
             }
         }
     }

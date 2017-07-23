@@ -9,8 +9,14 @@ import { WordService } from '../../services';
 })
 export class AddWordComponent implements OnInit {
   languages = [{
-    name    : "English",
-    code    : "en_US"
+    name: "Arabic",
+    code: "ar_EG"
+  }, {
+    name: "English",
+    code: "en_US"
+  }, {
+    name: "Dutch",
+    code: "nl_NL"
   }];
 
   word = {
