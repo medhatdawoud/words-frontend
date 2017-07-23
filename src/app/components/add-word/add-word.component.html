@@ -23,29 +23,29 @@
       <label for="">Adjective</label>
     </div>
     <div class="form-group">
-      <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
-      <label for="">Type</label>
-    </div>
-    <div class="form-group">
-      <input type="text" name="description" class="form-control" [(ngModel)]="word.description" required />
+      <textarea name="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
       <label for="">Description</label>
-    </div>
-    <div class="form-group">
-      <input type="text" name="soundUrl" class="form-control" [(ngModel)]="word.soundUrl" required />
-      <label for="">Sound Url</label>
-    </div>
-    <div class="form-group">
-      <input type="text" name="images" class="form-control" [(ngModel)]="word.images" required />
-      <label for="">Images Urls</label>
     </div>
     <div class="form-group">
       <input type="text" name="examples" class="form-control" [(ngModel)]="word.examples" required />
       <label for="">Examples</label>
     </div>
     <div class="form-group">
+      <input type="text" name="images" class="form-control" [(ngModel)]="word.images" required />
+      <label for="">Images Urls</label>
+    </div>
+    <div class="form-group">
+      <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
+      <label for="">Type</label>
+    </div>
+    <!--<div class="form-group">
+      <input type="text" name="soundUrl" class="form-control" [(ngModel)]="word.soundUrl" required />
+      <label for="">Sound Url</label>
+    </div>-->
+    <!--<div class="form-group">
       <input type="text" name="videos" class="form-control" [(ngModel)]="word.videos" required />
       <label for="">Videos</label>
-    </div>
+    </div>-->
     <div class="form-group text-right">
       <button class="btn btn-lg btn-primary" (click)="addWord()"><i class="fa fa-plus"></i> Add word</button>
     </div>
