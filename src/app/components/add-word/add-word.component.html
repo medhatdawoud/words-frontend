@@ -5,19 +5,15 @@
     <div class="dropdown pull-right">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="true">
-        Language
+        <span *ngIf="selectedLang" class="lang-{{selectedLang.code}}"></span> {{ selectedLang.name || 'Language' }}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-languages" aria-labelledby="dropdownMenu1">
-        <li *ngFor="let lang of languages"><a href="#" class="lang lang-{{lang.code}}">{{lang.name}}</a></li>
+        <li *ngFor="let lang of languages" [ngClass]="{'active' : lang == selectedLang}"><a href="javascript:void(0)" (click)="changeSelectedLanguage(lang)" class="lang lang-{{lang.code}}">{{lang.name}}</a></li>
       </ul>
     </div>
   </h1>
   <form action="">
-    <div class="form-group">
-      <input type="text" name="lang" class="form-control" [(ngModel)]="word.lang" required />
-      <label for="">Language</label>
-    </div>
     <div class="form-group">
       <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
       <label for="">Word</label>

@@ -19,8 +19,10 @@ export class AddWordComponent implements OnInit {
     code: "nl_NL"
   }];
 
+  selectedLang = this.languages[1];
+
   word = {
-    lang: '',
+    lang: this.selectedLang.name,
     word: '',
     type: '',
     adjective: '',
@@ -42,6 +44,10 @@ export class AddWordComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
       })
+  }
+
+  changeSelectedLanguage(lang){
+    this.selectedLang = lang;
   }
 
 }

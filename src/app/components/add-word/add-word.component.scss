@@ -11,28 +11,36 @@
     .dropdown-languages {
         min-width: 7.8rem;
 
-        .lang {
-            padding: 5px 10px;
-            font-family: arial;
-            font-size: 14px;
-            line-height: 14px;
-            display: block;
+        li {
+            .lang {
+                padding: 5px 10px;
+                font-family: arial;
+                font-size: 14px;
+                line-height: 14px;
+                display: block;
 
-            &:hover {
-                background: $bw-grey-01;
+                &:hover {
+                    background: $bw-grey-01;
+                }
             }
 
-            &.lang-en_US:before {
-                content: "🇺🇸 ";
-            }
-
-            &.lang-ar_EG:before {
-                content: "🇪🇬 ";
-            }
-
-            &.lang-nl_NL:before {
-                content: "🇳🇱 ";
+            &.active {
+                .lang {
+                    background: $bw-grey-01;
+                }
             }
         }
+    }
+
+    .lang-en_US:before {
+        content: "🇺🇸 ";
+    }
+
+    .lang-ar_EG:before {
+        content: "🇪🇬 ";
+    }
+
+    .lang-nl_NL:before {
+        content: "🇳🇱 ";
     }
 }
