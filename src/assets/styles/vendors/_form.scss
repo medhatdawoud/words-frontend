@@ -10,6 +10,7 @@ form {
             font-size       : 18px;
             line-height     : 30px;
             margin-bottom   : 0px;
+            pointer-events  : none; 
             z-index         : $bw-z-index-3;
         }
 
