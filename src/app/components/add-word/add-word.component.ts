@@ -8,6 +8,11 @@ import { WordService } from '../../services';
   styleUrls: ['./add-word.component.scss']
 })
 export class AddWordComponent implements OnInit {
+  languages = [{
+    name    : "English",
+    code    : "en_US"
+  }];
+
   word = {
     lang: '',
     word: '',

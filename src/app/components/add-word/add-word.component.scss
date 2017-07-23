@@ -1,0 +1,29 @@
+@import '../../../assets/styles/helpers/variables';
+@import '../../../assets/styles/helpers/mixins';
+
+.add-word-component {
+    margin-top: 30px;
+
+    h1 {
+        padding: 20px 0;
+    }
+
+    .dropdown-languages {
+        min-width: 8.2rem;
+
+        .lang {
+            padding: 0px 10px;
+            font-family: arial;
+            font-size: 14px;
+            line-height: 14px;
+            display: block;
+
+            &.lang-en_US {
+                &:before {
+                    content: "🇺🇸";
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
