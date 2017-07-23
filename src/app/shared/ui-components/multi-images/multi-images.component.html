@@ -1,0 +1,11 @@
+<div class="form-group multi-images-component">
+  <input type="text" name="images" class="form-control" required />
+  <label for="">Image Url</label>
+
+  <div class="images-preview">
+    <div class="one-image" *ngFor="let img of images">
+      <img [src]="img">
+      <div class="remove" (click)="removeImage(img)"><div class="big">&times;</div> remove</div>
+    </div>
+  </div>
+</div>

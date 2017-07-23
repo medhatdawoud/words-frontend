@@ -1,0 +1,1 @@
+export {MultiImagesComponent} from './multi-images/multi-images.component';
