@@ -2,10 +2,11 @@
 @import '../../../assets/styles/helpers/mixins';
 
 .add-word-component {
-    margin-top: 30px;
+    margin-top: 25px;
+    margin-bottom: 30px;
 
     h1 {
-        padding: 20px 0;
+        padding: 0 0 20px;
     }
 
     .dropdown-languages {
