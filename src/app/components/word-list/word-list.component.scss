@@ -12,13 +12,6 @@
             position: relative;
             border  : 1px solid $bw-grey-01;
 
-            * {
-                transition          : all 0.25s ease-out; /* future, future, please come sooner! */
-                -webkit-transition  : all 0.25s ease-out;
-                -moz-transition     : all 0.25s ease-out;
-                -o-transition       : all 0.25s ease-out;
-            }
-
             .images {
                 position: absolute;
                 top     : 0;
