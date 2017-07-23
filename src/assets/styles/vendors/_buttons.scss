@@ -1,4 +1,6 @@
 .btn {
+    font-family: $bw-font-first;
+    
     &.dropdown-toggle {
         &:active, &:focus {
             outline: none;
