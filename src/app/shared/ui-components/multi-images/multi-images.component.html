@@ -1,11 +1,16 @@
 <div class="form-group multi-images-component">
-  <input type="text" name="images" class="form-control" required />
-  <label for="">Image Url</label>
+  <div class="input-group">
+    <input type="text" name="image" [(ngModel)]="image" class="form-control" required />
+    <label for="">Image Url</label>
+    <span class="input-group-btn">
+      <button class="btn btn-success" [disabled]="images.length >= 4" type="button" (click)="addImage(image)"><i class="fa fa-plus"></i> Add Image</button>
+    </span>
+  </div>
 
   <div class="images-preview">
-    <div class="one-image" *ngFor="let img of images">
+    <div class="one-image" *ngFor="let img of images; let imgIndex = index">
       <img [src]="img">
-      <div class="remove" (click)="removeImage(img)"><div class="big">&times;</div> remove</div>
+      <div class="remove" (click)="removeImage(imgIndex)"><div class="big">&times;</div> remove</div>
     </div>
   </div>
 </div>
