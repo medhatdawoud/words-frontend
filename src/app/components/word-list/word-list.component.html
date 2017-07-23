@@ -1,6 +1,15 @@
-<div *ngFor="let w of words" class="word">
-  <div class="images" *ngFor="let image of w.images">
-    <img [src]="image" alt="" width="100">
+<div class="words-list tile-view">
+  <div *ngFor="let w of words" class="one-word">
+    <div class="edit">
+      <i class="fa fa-pencil"></i>
+    </div>
+    <div class="images" *ngFor="let image of w.images">
+      <img [src]="image" alt="" width="100">
+    </div>
+    <div class="word">
+      {{w.word}}
+      <br>
+      <small *ngIf="w.adjective">[{{w.adjective}}]</small>
+    </div>
   </div>
-  {{w.word}}
 </div>
