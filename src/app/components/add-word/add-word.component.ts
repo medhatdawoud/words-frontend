@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MultiImagesComponent } from './../../shared/ui-components';
+import { MultiImagesComponent, MultiExamplesComponent } from './../../shared/ui-components';
 import { WordService } from '../../services';
 
 @Component({
@@ -47,7 +47,7 @@ export class AddWordComponent implements OnInit {
       })
   }
 
-  changeSelectedLanguage(lang){
+  changeSelectedLanguage(lang) {
     this.selectedLang = lang;
   }
 
