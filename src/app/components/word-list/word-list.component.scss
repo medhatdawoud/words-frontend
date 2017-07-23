@@ -13,10 +13,10 @@
             border  : 1px solid $bw-grey-01;
 
             * {
-                transition: all 0.25s ease-out; /* future, future, please come sooner! */
-                -webkit-transition: all 0.25s ease-out;
-                -moz-transition: all 0.25s ease-out;
-                -o-transition: all 0.25s ease-out;
+                transition          : all 0.25s ease-out; /* future, future, please come sooner! */
+                -webkit-transition  : all 0.25s ease-out;
+                -moz-transition     : all 0.25s ease-out;
+                -o-transition       : all 0.25s ease-out;
             }
 
             .images {
@@ -44,7 +44,6 @@
                 flex           : 1;
                 text-align     : center;
                 color          : $bw-white;
-                // box-shadow     : 0 0 50px $bw-black inset;
                 font-size      : 28px;
                 padding-top    : 10px;
                 @include bw-background-with-opacity($bw-grey-07, 0.5); 
