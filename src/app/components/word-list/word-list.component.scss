@@ -3,11 +3,11 @@
 
 .words-list {
     &.tile-view {
-        margin: 30px 15px;
+        margin: 30px 5px;
         .one-word {
             width   : 150px;
             height  : 150px;
-            margin  : 10px;
+            margin  : 2px 5px;
             display : inline-block;
             position: relative;
             border  : 1px solid $bw-grey-01;
@@ -37,7 +37,7 @@
                 flex           : 1;
                 text-align     : center;
                 color          : $bw-white;
-                font-size      : 28px;
+                font-size      : 24px;
                 padding-top    : 10px;
                 @include bw-background-with-opacity($bw-grey-07, 0.5); 
 
