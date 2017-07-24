@@ -1,6 +1,6 @@
 <div class="form-group multi-component">
   <div class="input-group">
-    <input type="text" name="item" [(ngModel)]="item" class="form-control" required />
+    <input type="text" name="item" [(ngModel)]="item" [disabled]="items.length >= maxLength" class="form-control" required />
     <label *ngIf="type == 'images'" for="images">Image Url</label>
     <label *ngIf="type == 'examples'" for="images">Example Url</label>
     <label *ngIf="type == 'tags'" for="images">Tag name</label>

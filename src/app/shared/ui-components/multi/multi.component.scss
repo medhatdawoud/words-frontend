@@ -2,6 +2,13 @@
 @import '../../../../assets/styles/helpers/mixins';
 
 .multi-component {
+    .form-control {
+        &[disabled] {
+            & ~ label {
+                color: $bw-grey-03;
+            }
+        }
+    }
     .examples-preview {
         padding: 5px 0;
         
