@@ -3,6 +3,7 @@
     <input type="text" name="item" [(ngModel)]="item" class="form-control" required />
     <label *ngIf="type == 'images'" for="images">Image Url</label>
     <label *ngIf="type == 'examples'" for="images">Example Url</label>
+    <label *ngIf="type == 'tags'" for="images">Tag name</label>
     <span class="input-group-btn">
       <button class="btn btn-default" [disabled]="items.length >= 4" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
     </span>
@@ -22,5 +23,11 @@
     </div>
   </div>
 
+  <div class="tags-preview" *ngIf="type == 'tags'">
+    <div class="one-tag" *ngFor="let itm of items; let Index = index">
+      {{itm}}
+      <div class="remove" (click)="removeItem(Index)"><div class="big">&times;</div></div>
+    </div>
+  </div>
 
 </div>

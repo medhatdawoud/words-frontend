@@ -6,28 +6,58 @@
         padding: 5px 0;
         
         .one-example {
-            background: $bw-grey-01;
-            position: relative;
-            padding: 10px 15px;
-            margin-bottom: 3px;
+            background      : $bw-grey-01;
+            position        : relative;
+            padding         : 10px 15px;
+            margin-bottom   : 3px;
 
             .remove {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                color: $bw-white;
-                background: $bw-red;
-                padding: 0 10px;
-                font-size: 40px;
-                line-height: 40px;
-                cursor: pointer;
-                display: none;
+                position    : absolute;
+                top         : 0;
+                right       : 0;
+                bottom      : 0;
+                color       : $bw-white;
+                background  : $bw-red;
+                padding     : 0 10px;
+                font-size   : 40px;
+                line-height : 40px;
+                cursor      : pointer;
+                display     : none;
             }
 
             &:hover {
                 .remove {
                     display: block;
+                }
+            }
+        }
+    }
+    .tags-preview {
+        padding: 5px 0;
+        
+        .one-tag {
+            background  : $bw-grey-01;
+            position    : relative;
+            padding     : 5px 30px 5px 15px;
+            margin      : 3px;
+            display     : inline-block;
+
+            .remove {
+                position    : absolute;
+                top         : 0;
+                right       : 0;
+                bottom      : 0;
+                color       : $bw-white;
+                background  : $bw-grey-02;
+                padding     : 5px;
+                font-size   : 20px;
+                line-height : 20px;
+                cursor      : pointer;
+            }
+
+            &:hover {
+                .remove {
+                    background: $bw-grey-03;
                 }
             }
         }
