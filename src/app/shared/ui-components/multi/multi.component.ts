@@ -6,8 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./multi.component.scss']
 })
 export class MultiComponent implements OnInit {
-  @Input() type = '';
+  @Input() type;
   @Input() items;
+  @Input() maxLength = 5;
   item = null;
 
   constructor() { }

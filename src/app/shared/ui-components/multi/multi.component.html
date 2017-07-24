@@ -5,7 +5,7 @@
     <label *ngIf="type == 'examples'" for="images">Example Url</label>
     <label *ngIf="type == 'tags'" for="images">Tag name</label>
     <span class="input-group-btn">
-      <button class="btn btn-default" [disabled]="items.length >= 4" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
+      <button class="btn btn-default" [disabled]="items.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
 
