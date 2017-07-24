@@ -1,2 +1,1 @@
-export {MultiImagesComponent} from './multi-images/multi-images.component';
-export {MultiExamplesComponent} from './multi-examples/multi-examples.component';
+export {MultiComponent} from './multi/multi.component';

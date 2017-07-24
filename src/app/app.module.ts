@@ -6,15 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AddWordComponent, WordListComponent } from './components';
 import { WordService } from './services';
-import { MultiImagesComponent,MultiExamplesComponent } from './shared/ui-components';
+import { MultiComponent } from './shared/ui-components';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddWordComponent,
     WordListComponent,
-    MultiImagesComponent,
-    MultiExamplesComponent
+    MultiComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+<div class="form-group multi-component">
+  <div class="input-group">
+    <input type="text" name="item" [(ngModel)]="item" class="form-control" required />
+    <label *ngIf="type == 'images'" for="images">Image Url</label>
+    <label *ngIf="type == 'examples'" for="images">Example Url</label>
+    <span class="input-group-btn">
+      <button class="btn btn-default" [disabled]="items.length >= 4" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
+    </span>
+  </div>
+
+  <div class="images-preview" *ngIf="type == 'images'">
+    <div class="one-image" *ngFor="let itm of items; let Index = index">
+      <img [src]="itm">
+      <div class="remove" (click)="removeItem(Index)"><div class="big">&times;</div> remove</div>
+    </div>
+  </div>
+
+  <div class="examples-preview" *ngIf="type == 'examples'">
+    <div class="one-example" *ngFor="let itm of items; let Index = index">
+      {{itm}}
+      <div class="remove" (click)="removeItem(Index)"><div class="big">&times;</div></div>
+    </div>
+  </div>
+
+
+</div>

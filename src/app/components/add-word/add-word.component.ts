@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MultiImagesComponent, MultiExamplesComponent } from './../../shared/ui-components';
+import { MultiComponent } from './../../shared/ui-components';
 import { WordService } from '../../services';
 
 @Component({

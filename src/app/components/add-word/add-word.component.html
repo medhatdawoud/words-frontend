@@ -1,7 +1,6 @@
 <div class="add-word-component">
   <h1>
     New Word
-
     <div class="dropdown pull-right">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="true">
@@ -13,6 +12,7 @@
       </ul>
     </div>
   </h1>
+  
   <form action="">
     <div class="form-group">
       <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
@@ -26,8 +26,8 @@
       <textarea name="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
       <label for="">Description</label>
     </div>
-    <bw-multi-images word="word"></bw-multi-images>
-    <bw-multi-examples word="word"></bw-multi-examples>
+    <bw-multi [(items)]="word.images" type="images"></bw-multi>
+    <bw-multi [(items)]="word.examples" type="examples"></bw-multi>
     <!--<div class="form-group">
       <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
       <label for="">Type</label>
