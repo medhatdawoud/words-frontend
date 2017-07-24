@@ -23,18 +23,20 @@
                 top         : 0;
                 right       : 0;
                 bottom      : 0;
-                color       : $bw-white;
-                background  : $bw-red;
+                color       : $bw-grey-02;
+                background  : $bw-grey-01;
                 padding     : 0 10px;
                 font-size   : 40px;
                 line-height : 40px;
                 cursor      : pointer;
-                display     : none;
+                // display     : none; 
             }
 
             &:hover {
                 .remove {
-                    display: block;
+                    // display     : block;
+                    color       : $bw-white;
+                    background  : $bw-red;
                 }
             }
         }
@@ -54,8 +56,8 @@
                 top         : 0;
                 right       : 0;
                 bottom      : 0;
-                color       : $bw-white;
-                background  : $bw-grey-02;
+                color       : $bw-grey-02;
+                background  : $bw-grey-01;
                 padding     : 5px;
                 font-size   : 20px;
                 line-height : 20px;
@@ -64,7 +66,8 @@
 
             &:hover {
                 .remove {
-                    background: $bw-grey-03;
+                    color       : $bw-white; 
+                    background  : $bw-red;
                 }
             }
         }
