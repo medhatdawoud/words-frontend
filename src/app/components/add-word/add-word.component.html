@@ -18,6 +18,7 @@
       <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
       <label for="">Word</label>
     </div>
+    <bw-multi [(items)]="word.synonyms" label="Synonym" type="tags" maxLength="4"></bw-multi>
     <div class="form-group">
       <input type="text" name="adjective" class="form-control" [(ngModel)]="word.adjective" required />
       <label for="">Adjective</label>
@@ -26,9 +27,9 @@
       <textarea name="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
       <label for="">Description</label>
     </div>
-    <bw-multi [(items)]="word.images" type="images" maxLength="4"></bw-multi>
-    <bw-multi [(items)]="word.examples" type="examples" maxLength="5"></bw-multi>
-    <bw-multi [(items)]="word.tags" type="tags" maxLength="3"></bw-multi>
+    <bw-multi [(items)]="word.images" label="Image url" type="images" maxLength="4"></bw-multi>
+    <bw-multi [(items)]="word.examples" label="Example" type="examples" maxLength="5"></bw-multi>
+    <bw-multi [(items)]="word.tags" label="Tag" type="tags" maxLength="3"></bw-multi>
     <!--<div class="form-group">
       <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
       <label for="">Type</label>

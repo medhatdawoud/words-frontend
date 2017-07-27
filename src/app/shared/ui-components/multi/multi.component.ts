@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MultiComponent implements OnInit {
   @Input() type;
   @Input() items;
+  @Input() label;
   @Input() maxLength = 5;
   item = null;
 

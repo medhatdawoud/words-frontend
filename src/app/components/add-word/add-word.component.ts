@@ -25,6 +25,7 @@ export class AddWordComponent implements OnInit {
   word = {
     lang: this.selectedLang.name,
     word: '',
+    synonyms: [],
     type: '',
     adjective: '',
     description: '',
