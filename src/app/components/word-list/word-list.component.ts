@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { store, IAppState, WordActions } from '../../store';
+import { NgRedux, select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { Word } from '../IWord';
 
 import { WordService } from '../../services';
 
@@ -8,15 +12,21 @@ import { WordService } from '../../services';
   styleUrls: ['./word-list.component.scss']
 })
 export class WordListComponent implements OnInit {
+  @select('words') words$: Observable<Word>;
   words = [];
 
-  constructor(private _wordService: WordService) { }
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private wordActions: WordActions,
+    private _wordService: WordService)
+  { }
 
   ngOnInit() {
-    this._wordService.getAllWords()
-      .subscribe((allWords) => {
-        this.words = allWords.data;
-      });
+    this.wordActions.getAllWords();
+    // this._wordService.getAllWords()
+    //   .subscribe((allWords) => {
+    //     this.words = allWords.data;
+    //   });
   }
 
   editWord(word) {

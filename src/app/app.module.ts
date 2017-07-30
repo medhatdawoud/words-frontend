@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, store, WordActions } from './store';
+
 import { AppComponent } from './app.component';
 import { AddWordComponent, WordListComponent } from './components';
 import { WordService } from './services';
@@ -18,11 +21,17 @@ import { MultiComponent } from './shared/ui-components';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    NgReduxModule
   ],
   providers: [
-    WordService
+    WordService,
+    WordActions
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.provideStore(store);
+  }
+}
