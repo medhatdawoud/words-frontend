@@ -1,7 +1,7 @@
 <div class="words-list tile-view">
   <div *ngFor="let w of words" class="one-word">
     <div class="edit">
-      <i class="fa fa-pencil"></i>
+      <i (click)="editWord(w)" class="fa fa-pencil"></i>
     </div>
     <div class="images" *ngFor="let image of w.images">
       <img [src]="image" alt="" width="100">

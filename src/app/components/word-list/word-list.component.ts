@@ -19,4 +19,8 @@ export class WordListComponent implements OnInit {
       });
   }
 
+  editWord(word) {
+    console.log(word);
+  }
+
 }
