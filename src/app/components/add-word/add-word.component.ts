@@ -23,17 +23,17 @@ export class AddWordComponent implements OnInit {
   selectedLang = this.languages[1];
 
   word = {
-    lang: this.selectedLang.name,
-    word: '',
-    synonyms: [],
-    type: '',
-    adjective: '',
-    description: '',
-    soundUrl: '',
-    tags: [],
-    videos: [],
-    examples: [],
-    images: []
+    lang        : this.selectedLang.name,
+    word        : '',
+    synonyms    : [],
+    type        : '',
+    adjective   : '',
+    description : '',
+    soundUrl    : '',
+    tags        : [],
+    videos      : [],
+    examples    : [],
+    images      : []
   };
 
   constructor(private _wordService: WordService) { }
