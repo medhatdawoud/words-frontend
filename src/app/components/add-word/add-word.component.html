@@ -20,8 +20,8 @@
     </div>
     <bw-multi [(items)]="word.synonyms" label="Synonym" type="tags" maxLength="4"></bw-multi>
     <div class="form-group">
-      <input type="text" name="adjective" class="form-control" [(ngModel)]="word.adjective" required />
-      <label for="">Adjective</label>
+      <input type="text" name="pronounce" class="form-control" [(ngModel)]="word.pronounce" required />
+      <label for="">Pronounce</label>
     </div>
     <div class="form-group">
       <textarea name="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>

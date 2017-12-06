@@ -27,7 +27,7 @@ export class AddWordComponent implements OnInit {
     word        : '',
     synonyms    : [],
     type        : '',
-    adjective   : '',
+    pronounce   : '',
     description : '',
     soundUrl    : '',
     tags        : [],

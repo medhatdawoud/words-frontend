@@ -3,7 +3,7 @@ export interface Word {
     word        : string,
     synonym     : Array<string>,
     type        : string,
-    adjective   : string,
+    pronounce   : string,
     description : string,
     soundUrl    : string,
     tags        : Array<string>,
