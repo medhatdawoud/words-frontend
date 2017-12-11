@@ -30,7 +30,7 @@ export class WordListComponent implements OnInit {
   }
 
   editWord(word) {
-    console.log(word);
+    this.wordActions.changeCurrentWord(word);
   }
 
 }

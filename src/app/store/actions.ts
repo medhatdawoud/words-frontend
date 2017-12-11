@@ -4,6 +4,7 @@ import { IAppState } from './IAppState';
 import { WordService } from '../services';
 
 export const GET_ALL_WORDS_SUCCEED = "GET_ALL_WORDS_SUCCEED";
+export const CHANGE_CURRENT_WORD_SUCCEED = "CHANGE_CURRENT_WORD_SUCCEED";
 
 @Injectable()
 export class WordActions {
@@ -11,6 +12,13 @@ export class WordActions {
         private ngRedux: NgRedux<IAppState>,
         private wordService: WordService
     ) { }
+
+    changeCurrentWord(word) {
+        this.ngRedux.dispatch({
+            type: CHANGE_CURRENT_WORD_SUCCEED,
+            payload: word
+        });
+    }
 
     getAllWords() {
         this.wordService.getAllWords()

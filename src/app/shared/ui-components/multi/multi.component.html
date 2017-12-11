@@ -1,9 +1,9 @@
 <div class="form-group multi-component">
   <div class="input-group">
-    <input type="text" name="item" [(ngModel)]="item" [disabled]="items.length >= maxLength" class="form-control" required />
+    <input type="text" name="item" [(ngModel)]="item" [disabled]="items?.length >= maxLength" class="form-control" required />
     <label for="{{label}}">{{label}}</label>
     <span class="input-group-btn">
-      <button class="btn btn-default" [disabled]="items.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
+      <button class="btn btn-default" [disabled]="items?.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
   <div class="images-preview" *ngIf="type == 'images'">

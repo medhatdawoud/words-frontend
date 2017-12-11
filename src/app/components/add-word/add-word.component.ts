@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { MultiComponent } from './../../shared/ui-components';
 import { WordService } from '../../services';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'bw-add-word',
@@ -9,6 +12,8 @@ import { WordService } from '../../services';
   styleUrls: ['./add-word.component.scss']
 })
 export class AddWordComponent implements OnInit {
+  word: any;
+
   languages = [{
     name: "Arabic",
     code: "ar_EG"
@@ -22,24 +27,15 @@ export class AddWordComponent implements OnInit {
 
   selectedLang = this.languages[1];
 
-  word = {
-    lang        : this.selectedLang.name,
-    word        : '',
-    synonyms    : [],
-    type        : '',
-    pronounce   : '',
-    description : '',
-    soundUrl    : '',
-    tags        : [],
-    videos      : [],
-    examples    : [],
-    images      : []
-  };
-
-  constructor(private _wordService: WordService) { }
-
-  ngOnInit() {
+  constructor(private _wordService: WordService,
+    private ngRedux: NgRedux<IAppState>) {
+    ngRedux.select('currentWord')
+      .subscribe(data => {
+        this.word = data;
+      });;
   }
+
+  ngOnInit() { }
 
   addWord() {
     this._wordService.addNewWord(this.word)
