@@ -4,17 +4,18 @@ import { GET_ALL_WORDS_SUCCEED, CHANGE_CURRENT_WORD_SUCCEED } from './actions';
 
 const initialState: IAppState = {
     currentWord: {
-        lang: "English",
-        word: "",
-        synonym: [],
-        type: "",
-        pronounce: "",
-        description: "",
-        soundUrl: "",
-        tags: [],
-        videos: [],
-        examples: [],
-        images: []
+        id          : null, 
+        lang        : "",
+        word        : "",
+        synonym     : [],
+        type        : "",
+        pronounce   : "",
+        description : "",
+        soundUrl    : "",
+        tags        : [],
+        videos      : [],
+        examples    : [],
+        images      : []
     },
     words: [],
 }
