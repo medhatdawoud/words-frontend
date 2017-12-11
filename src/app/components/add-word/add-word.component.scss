@@ -20,25 +20,30 @@
         padding     : 0 0 20px;
     }
 
-    .dropdown-languages {
-        min-width   : 7.8rem;
+    .dropdown {
+        .btn-lang {
+            background: $bw-grey-02;
+        }
+        .dropdown-languages {
+            min-width   : 7.8rem;
 
-        li {
-            .lang {
-                padding     : 5px 10px;
-                font-family : arial;
-                font-size   : 14px;
-                line-height : 14px;
-                display     : block;
-
-                &:hover {
-                    background  : $bw-grey-01;
-                }
-            }
-
-            &.active {
+            li {
                 .lang {
-                    background  : $bw-grey-01;
+                    padding     : 5px 10px;
+                    font-family : arial;
+                    font-size   : 14px;
+                    line-height : 14px;
+                    display     : block;
+
+                    &:hover {
+                        background  : $bw-grey-01;
+                    }
+                }
+
+                &.active {
+                    .lang {
+                        background  : $bw-grey-01;
+                    }
                 }
             }
         }
