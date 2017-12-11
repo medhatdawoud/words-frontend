@@ -8,6 +8,11 @@
                 color: $bw-grey-03;
             }
         }
+        & ~ .input-group-btn {
+            .btn {
+                background: $bw-grey-02; 
+            }
+        }
     }
     .examples-preview {
         padding: 5px 0;
