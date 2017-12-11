@@ -4,7 +4,7 @@ import { GET_ALL_WORDS_SUCCEED, CHANGE_CURRENT_WORD_SUCCEED } from './actions';
 
 const initialState: IAppState = {
     currentWord: {
-        id          : null, 
+        _id         : null, 
         lang        : "",
         word        : "",
         synonym     : [],

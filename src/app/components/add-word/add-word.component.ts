@@ -38,10 +38,14 @@ export class AddWordComponent implements OnInit {
   ngOnInit() { }
 
   addWord() {
-    this._wordService.addNewWord(this.word)
-      .subscribe((res) => {
-        console.log(res);
-      })
+    if (this.word._id) {
+      console.log(this.word._id);
+    } else {
+      this._wordService.addNewWord(this.word)
+        .subscribe((res) => {
+          console.log(res);
+        });
+    }
   }
 
   changeSelectedLanguage(lang) {

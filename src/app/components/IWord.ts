@@ -1,5 +1,5 @@
 export interface Word {
-    id          : string,
+    _id          : string,
     lang        : string,
     word        : string,
     synonym     : Array<string>,
