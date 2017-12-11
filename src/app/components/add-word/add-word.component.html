@@ -18,7 +18,7 @@
       <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
       <label for="">Word</label>
     </div>
-    <bw-multi [(items)]="word.synonyms" label="Synonym" type="tags" maxLength="4"></bw-multi>
+    <bw-multi [(items)]="word.synonym" label="Synonym" type="tags" maxLength="4"></bw-multi>
     <div class="form-group">
       <input type="text" name="pronounce" class="form-control" [(ngModel)]="word.pronounce" required />
       <label for="">Pronounce</label>
