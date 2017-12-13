@@ -39,7 +39,10 @@ export class AddWordComponent implements OnInit {
 
   addWord() {
     if (this.word._id) {
-      console.log(this.word._id);
+      this._wordService.updateWord(this.word)
+        .subscribe((res) => {
+          console.log(res);
+        });
     } else {
       this._wordService.addNewWord(this.word)
         .subscribe((res) => {

@@ -36,6 +36,25 @@ export class WordService {
       .catch(this.handleError);
   }
 
+  updateWord(word) {
+    return this.http.put(this.apiUrl + "api/word", {
+      _id: word._id,
+      lang: word.lang,
+      word: word.word,
+      type: word.type,
+      synonym: word.synonym,
+      pronounce: word.pronounce,
+      description: word.description,
+      soundUrl: word.soundUrl,
+      tags: [word.tags],
+      videos: [word.videos],
+      examples: [word.examples],
+      images: [word.images]
+    })
+      .map(this.extractRequiredData)
+      .catch(this.handleError);
+  }
+
   private extractRequiredData(res: Response) {
     let body = res.json();
     return body || {};
