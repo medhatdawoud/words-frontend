@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MultiComponent } from './../../shared/ui-components';
 import { WordService } from '../../services';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../store';
+import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -28,34 +28,26 @@ export class AddWordComponent implements OnInit {
   selectedLang = this.languages[1];
 
   constructor(private _wordService: WordService,
-    private ngRedux: NgRedux<IAppState>) {
-    ngRedux.select('currentWord')
+    private ngRedux: NgRedux<IAppState>,
+    private wordActions: WordActions) { }
+
+  ngOnInit() {
+    this.ngRedux.select('currentWord')
       .subscribe(data => {
         this.word = data;
       });;
   }
 
-  ngOnInit() { }
-
-  addWord() {
+  saveWord() {
     if (this.word._id) {
-      this._wordService.updateWord(this.word)
-        .subscribe((res) => {
-          console.log(res);
-        });
+      this.wordActions.updateWord(this.word);
     } else {
-      this._wordService.addNewWord(this.word)
-        .subscribe((res) => {
-          console.log(res);
-        });
+      this.wordActions.addWord(this.word);
     }
   }
 
   deleteWord() {
-    this._wordService.deleteWord(this.word._id)
-        .subscribe((res) => {
-          console.log(res);
-        });
+    this.wordActions.deleteWord(this.word._id);
   }
 
   changeSelectedLanguage(lang) {

@@ -27,10 +27,10 @@ export class WordService {
       pronounce: oneWord.pronounce,
       description: oneWord.description,
       soundUrl: oneWord.soundUrl,
-      tags: [oneWord.tags],
-      videos: [oneWord.videos],
-      examples: [oneWord.examples],
-      images: [oneWord.images]
+      tags: oneWord.tags,
+      videos: oneWord.videos,
+      examples: oneWord.examples,
+      images: oneWord.images
     })
       .map(this.extractRequiredData)
       .catch(this.handleError);

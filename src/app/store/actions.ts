@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from './IAppState';
 import { WordService } from '../services';
-
-export const GET_ALL_WORDS_SUCCEED = "GET_ALL_WORDS_SUCCEED";
-export const CHANGE_CURRENT_WORD_SUCCEED = "CHANGE_CURRENT_WORD_SUCCEED";
+import types from './constants';
 
 @Injectable()
 export class WordActions {
@@ -15,7 +13,7 @@ export class WordActions {
 
     changeCurrentWord(word) {
         this.ngRedux.dispatch({
-            type: CHANGE_CURRENT_WORD_SUCCEED,
+            type: types.CHANGE_CURRENT_WORD_SUCCEED,
             payload: word
         });
     }
@@ -24,8 +22,38 @@ export class WordActions {
         this.wordService.getAllWords()
             .subscribe(words => {
                 this.ngRedux.dispatch({
-                    type: GET_ALL_WORDS_SUCCEED,
+                    type: types.GET_ALL_WORDS_SUCCEED,
                     payload: words.data
+                })
+            });
+    }
+
+    updateWord(word) {
+        this.wordService.updateWord(word)
+            .subscribe(res => {
+                this.ngRedux.dispatch({
+                    type: types.UPDATE_WORD_SUCCEED,
+                    payload: word
+                })
+            });
+    }
+
+    deleteWord(id) {
+        this.wordService.deleteWord(id)
+            .subscribe(word => {
+                this.ngRedux.dispatch({
+                    type: types.DELETE_WORD_SUCCEED,
+                    payload: id
+                })
+            });
+    }
+
+    addWord(word) {
+        this.wordService.addNewWord(word)
+            .subscribe(res => {
+                this.ngRedux.dispatch({
+                    type: types.ADD_WORD_SUCCEED,
+                    payload: res.data
                 })
             });
     }
