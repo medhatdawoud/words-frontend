@@ -34,8 +34,8 @@ export class AddWordComponent implements OnInit {
   ngOnInit() {
     this.ngRedux.select('currentWord')
       .subscribe(data => {
-        this.word = data;
-      });;
+        this.word = Object.assign({}, data);
+      });
   }
 
   saveWord() {

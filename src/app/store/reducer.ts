@@ -32,7 +32,7 @@ export function reducer(state = initialState, action) {
             });
         case types.ADD_WORD_SUCCEED:
             return Object.assign({}, state, {
-                currentWord: initialState.currentWord,
+                currentWord: Object.assign({},initialState.currentWord),
                 words: state.words.concat([action.payload])
             });
         case types.UPDATE_WORD_SUCCEED: {
@@ -43,7 +43,7 @@ export function reducer(state = initialState, action) {
                 }
             });
             return Object.assign({}, state, {
-                currentWord: initialState.currentWord,
+                currentWord: Object.assign({},initialState.currentWord),
                 words
             });
         }
@@ -55,7 +55,7 @@ export function reducer(state = initialState, action) {
                 }
             });
             return Object.assign({}, state, {
-                currentWord: initialState.currentWord,
+                currentWord: Object.assign({},initialState.currentWord),
                 words
             });
         }
