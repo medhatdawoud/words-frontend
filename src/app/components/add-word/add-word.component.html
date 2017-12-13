@@ -13,7 +13,7 @@
     </div>
   </h1>
   
-  <form name="formAddWord" action="">
+  <form name="formAddWord" action="" #form= "ngForm" novalidate>
     <div class="form-group">
       <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
       <label for="">Word</label>
