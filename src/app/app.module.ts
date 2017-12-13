@@ -9,14 +9,15 @@ import { IAppState, store, WordActions } from './store';
 import { AppComponent } from './app.component';
 import { AddWordComponent, WordListComponent } from './components';
 import { WordService } from './services';
-import { MultiComponent } from './shared/ui-components';
+import { MultiComponent, PatternComponent } from './shared';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddWordComponent,
     WordListComponent,
-    MultiComponent
+    MultiComponent,
+    PatternComponent
   ],
   imports: [
     BrowserModule,

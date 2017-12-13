@@ -1,1 +1,0 @@
-export {MultiComponent} from './multi/multi.component';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MultiComponent } from './../../shared/ui-components';
+import { MultiComponent, PatternComponent } from './../../shared';
 import { WordService } from '../../services';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
