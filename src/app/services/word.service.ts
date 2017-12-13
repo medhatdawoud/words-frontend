@@ -46,10 +46,10 @@ export class WordService {
       pronounce: word.pronounce,
       description: word.description,
       soundUrl: word.soundUrl,
-      tags: [word.tags],
-      videos: [word.videos],
-      examples: [word.examples],
-      images: [word.images]
+      tags: word.tags,
+      videos: word.videos,
+      examples: word.examples,
+      images: word.images
     })
       .map(this.extractRequiredData)
       .catch(this.handleError);
