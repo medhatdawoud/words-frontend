@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -51,6 +51,14 @@ export class WordService {
       examples: [word.examples],
       images: [word.images]
     })
+      .map(this.extractRequiredData)
+      .catch(this.handleError);
+  }
+
+  deleteWord(id) {
+    return this.http.delete(this.apiUrl + "api/word", new RequestOptions({
+      body: { id: id }
+    }))
       .map(this.extractRequiredData)
       .catch(this.handleError);
   }

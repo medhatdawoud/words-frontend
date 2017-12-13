@@ -51,6 +51,13 @@ export class AddWordComponent implements OnInit {
     }
   }
 
+  deleteWord() {
+    this._wordService.deleteWord(this.word._id)
+        .subscribe((res) => {
+          console.log(res);
+        });
+  }
+
   changeSelectedLanguage(lang) {
     this.selectedLang = lang;
   }

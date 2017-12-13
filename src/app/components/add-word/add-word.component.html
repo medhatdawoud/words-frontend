@@ -43,6 +43,7 @@
       <label for="">Videos</label>
     </div>-->
     <div class="form-group text-right">
+      <button *ngIf="word._id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word._id)"><i class="fa fa-times"></i> Delete</button>
       <button class="btn btn-lg btn-primary" (click)="addWord()"><i class="fa fa-check"></i> Save word</button>
     </div>
   </form>
