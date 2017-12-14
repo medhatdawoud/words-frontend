@@ -1,13 +1,12 @@
-<div class="form-group multi-component">
-  <div class="input-group">
-    <input type="text" name="item" [(ngModel)]="item" [bw-pattern]=" type == 'images' ? { value:item , pattern: patterns.imgUrl} : null "   #imageLink="ngModel"  [disabled]="items?.length >= maxLength"   class="form-control" required />
+<div class="form-group multi-component" [formGroup]="userForm">
+  <div class="input-group" >
+    <input type="text"   formControlName="item"  [(ngModel)]="item"   [disabled] ="display" class="form-control" required />
     <label for="{{label}}">{{label}}</label>
     <span class="input-group-btn">
-      <button class="btn btn-default"   [disabled]="!item  || items?.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
+      <button class="btn btn-default"   [disabled]="(!userForm.valid && type =='images') " type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
-  <div>
-    
+  <div> 
   <div class="images-preview" *ngIf="type == 'images'">
     <div class="one-image" *ngFor="let itm of items; let Index = index">
       <img [src]="itm">

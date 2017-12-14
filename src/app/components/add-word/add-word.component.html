@@ -13,18 +13,18 @@
     </div>
   </h1>
   
-  <form name="formAddWord" action="" #form= "ngForm" novalidate>
+  <form name="formAddWord" action="" #form= "ngForm" novalidate [formGroup]="userForm">
     <div class="form-group">
-      <input type="text" name="word" class="form-control" [(ngModel)]="word.word" required />
+      <input type="text"  class="form-control" required />
       <label for="">Word</label>
     </div>
     <bw-multi [(items)]="word.synonym" label="Synonym" type="tags" maxLength="4"></bw-multi>
     <div class="form-group">
-      <input type="text" name="pronounce"  class="form-control" [(ngModel)]="word.pronounce" required />
+      <input type="text"    class="form-control"  formControlName="pronounce" [(ngModel)]="word.pronounce" required />
       <label for="">Pronounce</label>
     </div>
     <div class="form-group">
-      <textarea name="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
+      <textarea  class="form-control"  required rows="3"></textarea>
       <label for="">Description</label>
     </div>
     <bw-multi [(items)]="word.images" label="Image url" type="images"   maxLength="4"></bw-multi>
@@ -44,7 +44,7 @@
     </div>-->
     <div class="form-group text-right">
       <button *ngIf="word._id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word._id)"><i class="fa fa-times"></i> Delete</button>
-      <button class="btn btn-lg btn-primary" (click)="saveWord()"><i class="fa fa-check"></i> Save word</button>
+      <button class="btn btn-lg btn-primary" [disabled]="!userForm.valid " (click)="saveWord()"><i class="fa fa-check"></i> Save word</button>
     </div>
   </form>
 </div>

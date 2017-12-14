@@ -5,6 +5,7 @@ import { WordService } from '../../services';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'bw-add-word',
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AddWordComponent implements OnInit {
   word: any;
+  userForm: any;
 
  /*bw-pattern="pattern.imgUrl"
   patterns = {
@@ -34,7 +36,11 @@ export class AddWordComponent implements OnInit {
 
   constructor(private _wordService: WordService,
     private ngRedux: NgRedux<IAppState>,
-    private wordActions: WordActions) { }
+    private wordActions: WordActions,private formBuilder: FormBuilder) {
+      this.userForm = this.formBuilder.group({
+        'pronounce': ['', [Validators.required,Validators.pattern('^[a-z-]+$')]]
+      });
+     }
 
   ngOnInit() {
     this.ngRedux.select('currentWord')
