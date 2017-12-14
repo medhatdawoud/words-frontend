@@ -14,6 +14,11 @@ import { Observable } from 'rxjs/Observable';
 export class AddWordComponent implements OnInit {
   word: any;
 
+ /*bw-pattern="pattern.imgUrl"
+  patterns = {
+    imgUrl: "^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png|jpeg|svg)$"
+  };*/
+
   languages = [{
     name: "Arabic",
     code: "ar_EG"

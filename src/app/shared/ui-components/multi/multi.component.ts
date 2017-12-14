@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import {PatternComponent} from '../../patterns-component/pattern.component';
 @Component({
   selector: 'bw-multi',
   templateUrl: './multi.component.html',
@@ -11,10 +11,10 @@ export class MultiComponent implements OnInit {
   @Input() label;
   @Input() maxLength = 5;
   item = null;
-
-  imagePattern="^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png|jpeg|svg)$";
-
-  constructor() { }
+  
+  patterns = {imgUrl: '^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png|jpeg|svg)$'};
+  
+   constructor() { }
 
   ngOnInit() {
   }
