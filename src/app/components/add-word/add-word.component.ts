@@ -15,14 +15,14 @@ export class AddWordComponent implements OnInit {
   word: any;
 
   languages = [{
-    name: "Arabic",
-    code: "ar_EG"
+    name: 'Arabic',
+    code: 'ar_EG'
   }, {
-    name: "English",
-    code: "en_US"
+    name: 'English',
+    code: 'en_US'
   }, {
-    name: "Dutch",
-    code: "nl_NL"
+    name: 'Dutch',
+    code: 'nl_NL'
   }];
 
   selectedLang = this.languages[1];

@@ -11,7 +11,7 @@ export class MultiComponent implements OnInit {
   @Input() label;
   @Input() maxLength = 5;
   item = null;
-  imagePattern="^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$";
+  imagePattern= '^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$';
 
   constructor() { }
 

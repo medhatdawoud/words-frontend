@@ -4,14 +4,14 @@ import types from './constants';
 
 const initialState: IAppState = {
     currentWord: {
-        _id: "",
-        lang: "",
-        word: "",
+        _id: '',
+        lang: '',
+        word: '',
         synonym: [],
-        type: "",
-        pronounce: "",
-        description: "",
-        soundUrl: "",
+        type: '',
+        pronounce: '',
+        description: '',
+        soundUrl: '',
         tags: [],
         videos: [],
         examples: [],
@@ -32,30 +32,30 @@ export function reducer(state = initialState, action) {
             });
         case types.ADD_WORD_SUCCEED:
             return Object.assign({}, state, {
-                currentWord: Object.assign({},initialState.currentWord),
+                currentWord: Object.assign({}, initialState.currentWord),
                 words: state.words.concat([action.payload])
             });
         case types.UPDATE_WORD_SUCCEED: {
-            let words = state.words;
+            const words = state.words;
             words.forEach((element, index) => {
                 if (element._id === action.payload._id) {
                     words[index] = action.payload;
                 }
             });
             return Object.assign({}, state, {
-                currentWord: Object.assign({},initialState.currentWord),
+                currentWord: Object.assign({}, initialState.currentWord),
                 words
             });
         }
         case types.DELETE_WORD_SUCCEED: {
-            let words = state.words;
+            const words = state.words;
             words.forEach((element, index) => {
                 if (element._id === action.payload) {
-                    words.splice(index,1);
+                    words.splice(index, 1);
                 }
             });
             return Object.assign({}, state, {
-                currentWord: Object.assign({},initialState.currentWord),
+                currentWord: Object.assign({}, initialState.currentWord),
                 words
             });
         }
