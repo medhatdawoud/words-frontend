@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MultiComponent } from './../../shared/ui-components';
-import { WordService } from '../../services';
+import { WordService, ValidationService } from '../../services';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'bw-add-word',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./add-word.component.scss']
 })
 export class AddWordComponent implements OnInit {
+  public userForm: FormGroup;
   word: any;
 
   languages = [{
@@ -29,13 +31,30 @@ export class AddWordComponent implements OnInit {
 
   constructor(private _wordService: WordService,
     private ngRedux: NgRedux<IAppState>,
-    private wordActions: WordActions) { }
+    private validationService: ValidationService,
+    private wordActions: WordActions, private formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
+
     this.ngRedux.select('currentWord')
       .subscribe(data => {
         this.word = Object.assign({}, data);
       });
+    // Initialize our form
+    this.userForm = this.formBuilder.group({
+      'word': ['', Validators.compose([Validators.required, this.validationService.wordValidator])],
+      'pronounce': ['', Validators.compose([Validators.required, this.validationService.pronounceValidator])],
+      'description': ['', Validators.compose([Validators.required, Validators.maxLength(300)])],
+      'multiControl': this.formBuilder.group({
+        'synonym': ['', Validators.compose([this.validationService.synonymValidator, Validators.maxLength(20)])],
+        'images': ['', Validators.compose([Validators.required, this.validationService.imageValidator])],
+        'examples': ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
+        'tags': ['', Validators.compose([Validators.required, this.validationService.tagsValidator])],
+
+      })
+    });
+
   }
 
   saveWord() {

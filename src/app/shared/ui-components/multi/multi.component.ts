@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { FormBuilder, Validators, FormGroup, FormControl, ControlContainer } from '@angular/forms';
+import { ValidationService } from 'app/services/validation.service';
 @Component({
   selector: 'bw-multi',
   templateUrl: './multi.component.html',
@@ -11,11 +12,12 @@ export class MultiComponent implements OnInit {
   @Input() label;
   @Input() maxLength = 5;
   item = null;
-  imagePattern= '^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png|jpeg|svg)$';
+  public userForm: FormGroup;
 
-  constructor() { }
+  constructor(private controlContainer: ControlContainer){}
 
   ngOnInit() {
+    this.userForm = <FormGroup>this.controlContainer.control;
   }
 
   removeItem(index) {
@@ -23,8 +25,10 @@ export class MultiComponent implements OnInit {
   }
 
   addItem(oneItem) {
+    
     this.items.push(oneItem);
-    this.item = null;
+    //this.item = null;
+    
   }
 
 }

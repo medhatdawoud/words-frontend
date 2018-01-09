@@ -1,29 +1,39 @@
 <div class="form-group multi-component">
-  <div class="input-group">
-    <input type="text" name="item" [(ngModel)]="item" #imageLink="ngModel" [disabled]="items?.length >= maxLength"  [pattern]= " type == 'images' ? imagePattern : null " class="form-control" required />
+  <div class="input-group" [formGroup]="userForm">
+    <input type="text" [formControlName]="type" name="item" class="form-control" [(ngModel)]="item" />
     <label for="{{label}}">{{label}}</label>
     <span class="input-group-btn">
-      <button class="btn btn-default"  [disabled]="!item || (type == 'images' && imageLink.dirty && imageLink.invalid ) ||  items?.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
+      <button class="btn btn-default" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
+  <bw-error-message *ngIf="type == 'images'" [control]="userForm.controls.images"></bw-error-message>
+  <bw-error-message *ngIf="type == 'tags'" [control]="userForm.controls.tags"></bw-error-message>
+  <bw-error-message *ngIf="type == 'examples'" [control]="userForm.controls.examples"></bw-error-message>
+  <bw-error-message *ngIf="type == 'synonym'" [control]="userForm.controls.synonym"></bw-error-message>
+
   <div class="images-preview" *ngIf="type == 'images'">
     <div class="one-image" *ngFor="let itm of items; let Index = index">
       <img [src]="itm">
-      <div class="remove" (click)="removeItem(Index)"><div class="big">&times;</div> remove</div>
+      <div class="remove" (click)="removeItem(Index)">
+        <div class="big">&times;</div> remove</div>
     </div>
   </div>
 
   <div class="examples-preview" *ngIf="type == 'examples'">
     <div class="one-example" *ngFor="let itm of items; let Index = index">
       {{itm}}
-      <div class="remove" (click)="removeItem(Index)"><div class="big">&times;</div></div>
+      <div class="remove" (click)="removeItem(Index)">
+        <div class="big">&times;</div>
+      </div>
     </div>
   </div>
 
-  <div class="tags-preview" *ngIf="type == 'tags'">
+  <div class="tags-preview" *ngIf="type == 'tags' || type == 'synonym'">
     <div class="one-tag" *ngFor="let itm of items; let Index = index">
       {{itm}}
-      <div class="remove" (click)="removeItem(Index)"><div class="big">&times;</div></div>
+      <div class="remove" (click)="removeItem(Index)">
+        <div class="big">&times;</div>
+      </div>
     </div>
   </div>
 
