@@ -47,7 +47,7 @@
     </div>-->
     <div class="form-group text-right">
       <button *ngIf="word._id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word._id)"><i class="fa fa-times"></i> Delete</button>
-      <button class="btn btn-lg btn-primary" (click)="saveWord()" [disabled]="!userForm.valid"><i class="fa fa-check"></i> Save word</button>
+      <button class="btn btn-lg btn-primary" (click)="saveWord()" ><i class="fa fa-check"></i> Save word</button>
     </div>
   </form>
 </div>
