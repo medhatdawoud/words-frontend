@@ -3,7 +3,7 @@
     <input type="text" [formControlName]="type" name="item" class="form-control" [(ngModel)]="item" />
     <label for="{{label}}">{{label}}</label>
     <span class="input-group-btn">
-      <button class="btn btn-default" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item)"><i class="fa fa-plus"></i> Add</button>
+      <button class="btn btn-default" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item,type)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
   <bw-error-message *ngIf="type == 'images'" [control]="userForm.controls.images"></bw-error-message>
