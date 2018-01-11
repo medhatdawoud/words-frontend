@@ -25,20 +25,19 @@ export class MultiComponent implements OnInit {
   }
 
   addItem(oneItem, type) {
-    if (type == "images") {
+    if (type === 'images') {
       if (this.userForm.controls.images.valid) {
         this.items.push(oneItem);
       }
-    } else if (type == "tags") {
+    } else if (type === 'tags') {
       if (this.userForm.controls.tags.valid) {
         this.items.push(oneItem);
       }
-      //this.item = null;
-    } else if (type == "examples") {
+    } else if (type === 'examples') {
       if (this.userForm.controls.examples.valid) {
         this.items.push(oneItem);
       }
-    } else if (type == "synonym") {
+    } else if (type === 'synonym') {
       if (this.userForm.controls.synonym.valid) {
         this.items.push(oneItem);
       }

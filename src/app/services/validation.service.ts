@@ -8,7 +8,7 @@ export class ValidationService {
   };
 
   getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
-    let errorMessages = {
+    const errorMessages = {
       'required': 'Required',
       'invalidWord': 'invalid word name , only accept alphabets',
       'invalidSynonym': 'invalid synonym name , only accept alphabets',
@@ -41,8 +41,7 @@ export class ValidationService {
       return null;
     } else if (control.value.match(ValidationService.pattern.synonym)) {
       return null;
-    }
-    else {
+    }else {
       return { 'invalidSynonym': true };
     }
 
