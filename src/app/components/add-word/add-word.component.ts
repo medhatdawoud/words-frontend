@@ -58,13 +58,14 @@ export class AddWordComponent implements OnInit {
   }
 
   saveWord() {
-    if (this.word._id) {
-      this.wordActions.updateWord(this.word);
-    } else {
-      this.wordActions.addWord(this.word);
+    if(this.userForm.valid){
+      if (this.word._id) {
+        this.wordActions.updateWord(this.word);
+      } else {
+        this.wordActions.addWord(this.word);
+      }
     }
   }
-
   deleteWord() {
     this.wordActions.deleteWord(this.word._id);
   }
