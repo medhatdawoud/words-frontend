@@ -14,7 +14,7 @@ export class MultiComponent implements OnInit {
   item = null;
   public userForm: FormGroup;
 
-  constructor(private controlContainer: ControlContainer){}
+  constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit() {
     this.userForm = <FormGroup>this.controlContainer.control;
@@ -24,11 +24,28 @@ export class MultiComponent implements OnInit {
     this.items.splice(index, 1);
   }
 
-  addItem(oneItem) {
-    
-    this.items.push(oneItem);
-    //this.item = null;
-    
+  addItem(oneItem, type) {
+    if (type == "images") {
+      if (this.userForm.controls.images.valid) {
+        this.items.push(oneItem);
+      }
+    } else if (type == "tags") {
+      if (this.userForm.controls.tags.valid) {
+        this.items.push(oneItem);
+      }
+      //this.item = null;
+    } else if (type == "examples") {
+      if (this.userForm.controls.examples.valid) {
+        this.items.push(oneItem);
+      }
+    } else if (type == "synonym") {
+      if (this.userForm.controls.synonym.valid) {
+        this.items.push(oneItem);
+      }
+    }
   }
-
 }
+function newFunction(): any {
+  return ']';
+}
+
