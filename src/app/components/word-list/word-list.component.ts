@@ -15,11 +15,8 @@ export class WordListComponent implements OnInit {
   @select('words') words$: Observable<Word>;
   words = [];
 
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private wordActions: WordActions,
-    private _wordService: WordService)
-  { }
+  constructor(private ngRedux: NgRedux<IAppState>, private wordActions: WordActions, private _wordService: WordService) {
+  }
 
   ngOnInit() {
     this.wordActions.getAllWords();

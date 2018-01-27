@@ -58,7 +58,7 @@ export class AddWordComponent implements OnInit {
   }
 
   saveWord() {
-    if(this.userForm.valid){
+    if (this.userForm.valid) {
       if (this.word._id) {
         this.wordActions.updateWord(this.word);
       } else {
