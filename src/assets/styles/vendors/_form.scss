@@ -21,7 +21,7 @@ form {
             }
 
             &:focus , &:valid {
-                & + label {
+                & ~ label {
                     font-size   : 12px;
                     color       : $bw-blue;
                     top         : 5px;
