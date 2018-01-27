@@ -26,7 +26,7 @@
       <bw-error-message [control]="userForm.controls.pronounce"></bw-error-message>
     </div>
     <div class="form-group">
-      <textarea name="description" formControlName="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
+      <textarea name="description" (keyup)="autoResize()" id="resizableTextarea" formControlName="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
       <label for="">Description</label>
       <bw-error-message [control]="userForm.controls.description"></bw-error-message>
     </div>

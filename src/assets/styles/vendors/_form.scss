@@ -29,5 +29,11 @@ form {
             }
         }
 
+        textarea {
+            &.form-control {
+                resize: none;
+            }
+        }
+
     }
 }

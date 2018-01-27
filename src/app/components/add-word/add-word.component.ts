@@ -74,4 +74,15 @@ export class AddWordComponent implements OnInit {
     this.selectedLang = lang;
   }
 
+  autoResize() {
+    const textArea = document.getElementById('resizableTextarea');
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = '116px';
+    const height = textArea.style.height;
+    // tslint:disable-next-line:radix
+    if (textArea.scrollHeight >= parseInt(height.substr(0, height.length - 2))) {
+      textArea.style.height = textArea.scrollHeight + 30 + 'px';
+    }
+  }
+
 }
