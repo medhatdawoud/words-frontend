@@ -1,15 +1,15 @@
 <div class="form-group multi-component">
-  <div class="input-group" [formGroup]="userForm">
-    <input type="text" [formControlName]="type" name="item" class="form-control" [(ngModel)]="item" />
+  <div class="input-group" [formGroup]="multiControlForm">
+    <input type="text" [formControlName]="type" (change)="changeState(item)" [ngClass]="{'filled' : filledValue}" name="item" class="form-control multi" [(ngModel)]="item" />
     <label for="{{label}}">{{label}}</label>
     <span class="input-group-btn">
       <button class="btn btn-default" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item,type)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
-  <bw-error-message *ngIf="type == 'images'" [control]="userForm.controls.images"></bw-error-message>
-  <bw-error-message *ngIf="type == 'tags'" [control]="userForm.controls.tags"></bw-error-message>
-  <bw-error-message *ngIf="type == 'examples'" [control]="userForm.controls.examples"></bw-error-message>
-  <bw-error-message *ngIf="type == 'synonym'" [control]="userForm.controls.synonym"></bw-error-message>
+  <bw-error-message *ngIf="type == 'images'" [control]="multiControlForm.controls.images"></bw-error-message>
+  <bw-error-message *ngIf="type == 'tags'" [control]="multiControlForm.controls.tags"></bw-error-message>
+  <bw-error-message *ngIf="type == 'examples'" [control]="multiControlForm.controls.examples"></bw-error-message>
+  <bw-error-message *ngIf="type == 'synonym'" [control]="multiControlForm.controls.synonym"></bw-error-message>
 
   <div class="images-preview" *ngIf="type == 'images'">
     <div class="one-image" *ngFor="let itm of items; let Index = index">

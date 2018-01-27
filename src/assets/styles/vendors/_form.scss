@@ -20,7 +20,9 @@ form {
                 line-height : 30px;
             }
 
-            &:focus , &:valid {
+            &:focus , 
+            &:not(.multi):valid ,
+            &.filled{
                 & ~ label {
                     font-size   : 12px;
                     color       : $bw-blue;

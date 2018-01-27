@@ -13,22 +13,22 @@
     </div>
   </h1>
 
-  <form name="formAddWord" action="" #form="ngForm" novalidate [formGroup]="userForm">
+  <form name="formAddWord" action="" #form="ngForm" novalidate [formGroup]="addWordForm">
     <div class="form-group">
       <input type="text" formControlName="word" name="word" class="form-control" [(ngModel)]="word.word" required />
       <label for="">Word</label>
-      <bw-error-message [control]="userForm.controls.word"></bw-error-message>
+      <bw-error-message [control]="addWordForm.controls.word"></bw-error-message>
     </div>
     <bw-multi [(items)]="word.synonym" formGroupName="multiControl" label="Synonym" type="synonym" maxLength="4"></bw-multi>
     <div class="form-group">
       <input type="text" name="pronounce" formControlName="pronounce" class="form-control" [(ngModel)]="word.pronounce" required/>
       <label for="">Pronounce</label>
-      <bw-error-message [control]="userForm.controls.pronounce"></bw-error-message>
+      <bw-error-message [control]="addWordForm.controls.pronounce"></bw-error-message>
     </div>
     <div class="form-group">
       <textarea name="description" (keyup)="autoResize()" id="resizableTextarea" formControlName="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
       <label for="">Description</label>
-      <bw-error-message [control]="userForm.controls.description"></bw-error-message>
+      <bw-error-message [control]="addWordForm.controls.description"></bw-error-message>
     </div>
     <bw-multi [(items)]="word.images" formGroupName="multiControl" label="Image url" type="images" maxLength="4"></bw-multi>
     <bw-multi [(items)]="word.examples" formGroupName="multiControl" label="Example" type="examples" maxLength="5"></bw-multi>

@@ -13,7 +13,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./add-word.component.scss']
 })
 export class AddWordComponent implements OnInit {
-  public userForm: FormGroup;
+  public addWordForm: FormGroup;
   word: any;
 
   languages = [{
@@ -42,7 +42,7 @@ export class AddWordComponent implements OnInit {
         this.word = Object.assign({}, data);
       });
     // Initialize our form
-    this.userForm = this.formBuilder.group({
+    this.addWordForm = this.formBuilder.group({
       'word': ['', Validators.compose([Validators.required, this.validationService.wordValidator])],
       'pronounce': ['', Validators.compose([Validators.required, this.validationService.pronounceValidator])],
       'description': ['', Validators.compose([Validators.required, Validators.maxLength(300)])],
@@ -51,14 +51,13 @@ export class AddWordComponent implements OnInit {
         'images': ['', Validators.compose([Validators.required, this.validationService.imageValidator])],
         'examples': ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
         'tags': ['', Validators.compose([Validators.required, this.validationService.tagsValidator])],
-
       })
     });
 
   }
 
   saveWord() {
-    if (this.userForm.valid) {
+    if (this.addWordForm.valid) {
       if (this.word._id) {
         this.wordActions.updateWord(this.word);
       } else {

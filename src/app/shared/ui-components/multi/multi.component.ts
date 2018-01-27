@@ -12,12 +12,13 @@ export class MultiComponent implements OnInit {
   @Input() label;
   @Input() maxLength = 5;
   item = null;
-  public userForm: FormGroup;
+  filledValue = false;
+  public multiControlForm: FormGroup;
 
   constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit() {
-    this.userForm = <FormGroup>this.controlContainer.control;
+    this.multiControlForm = <FormGroup>this.controlContainer.control;
   }
 
   removeItem(index) {
@@ -26,25 +27,29 @@ export class MultiComponent implements OnInit {
 
   addItem(oneItem, type) {
     if (type === 'images') {
-      if (this.userForm.controls.images.valid) {
+      if (this.multiControlForm.controls.images.valid) {
         this.items.push(oneItem);
       }
     } else if (type === 'tags') {
-      if (this.userForm.controls.tags.valid) {
+      if (this.multiControlForm.controls.tags.valid) {
         this.items.push(oneItem);
       }
     } else if (type === 'examples') {
-      if (this.userForm.controls.examples.valid) {
+      if (this.multiControlForm.controls.examples.valid) {
         this.items.push(oneItem);
       }
     } else if (type === 'synonym') {
-      if (this.userForm.controls.synonym.valid) {
+      if (this.multiControlForm.controls.synonym.valid) {
         this.items.push(oneItem);
       }
     }
   }
-}
-function newFunction(): any {
-  return ']';
-}
 
+  changeState(item) {
+    if (item && item !== '') {
+      this.filledValue = true;
+    } else {
+      this.filledValue = false;
+    }
+  }
+}
