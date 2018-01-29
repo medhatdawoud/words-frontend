@@ -63,6 +63,12 @@ export class AddWordComponent implements OnInit {
       } else {
         this.wordActions.addWord(this.word);
       }
+    } else {
+      for (const key in this.addWordForm.controls) {
+        if (this.addWordForm.controls[key]) {
+        this.addWordForm.controls[key].markAsTouched();
+        }
+      }
     }
   }
   deleteWord() {

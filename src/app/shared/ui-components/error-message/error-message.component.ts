@@ -13,7 +13,7 @@ export class ErrorMessageComponent {
 
   get errorMessage() {
     for (const propertyName in this.control.errors) {
-      if (this.control.errors.hasOwnProperty(propertyName)) {
+      if (this.control.touched && this.control.errors.hasOwnProperty(propertyName)) {
         return this.validationService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
       }
     }
