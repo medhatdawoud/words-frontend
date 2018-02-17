@@ -15,6 +15,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
   word: any;
+  controlName = false;
 
   languages = [{
     name: 'Arabic',
@@ -48,16 +49,21 @@ export class AddWordComponent implements OnInit {
       'description': ['', Validators.compose([Validators.required, Validators.maxLength(300)])],
       'multiControl': this.formBuilder.group({
         'synonym': ['', Validators.compose([this.validationService.synonymValidator, Validators.maxLength(20)])],
-        'images': ['', Validators.compose([Validators.required, this.validationService.imageValidator])],
-        'examples': ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
-        'tags': ['', Validators.compose([Validators.required, this.validationService.tagsValidator])],
+        'images': ['', Validators.compose([this.validationService.imageValidator])],
+        'examples': ['', Validators.compose([Validators.maxLength(100)])],
+        'tags': ['', Validators.compose([this.validationService.tagsValidator])],
       })
     });
 
   }
 
   saveWord() {
-    if (this.addWordForm.valid) {
+    for (const key in this.addWordForm.controls) {
+      if (!this.addWordForm.contains['multiControl'] && this.addWordForm.controls[key].valid) {
+        this.controlName = true;
+      }
+    }
+    if (this.word.images.length >= 1 && this.word.examples.length >= 1 && this.word.tags.length >= 1 && this.controlName) {
       if (this.word._id) {
         this.wordActions.updateWord(this.word);
       } else {
@@ -66,7 +72,7 @@ export class AddWordComponent implements OnInit {
     } else {
       for (const key in this.addWordForm.controls) {
         if (this.addWordForm.controls[key]) {
-        this.addWordForm.controls[key].markAsTouched();
+          this.addWordForm.controls[key].markAsTouched();
         }
       }
     }
