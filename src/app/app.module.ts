@@ -11,27 +11,36 @@ import { AddWordComponent, WordListComponent } from './components';
 import { WordService, ValidationService } from './services';
 import { MultiComponent, ErrorMessageComponent } from './shared/ui-components';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalComponent } from 'app/components/word-list/word-list.component';
+
+// TODO: Update anguar to version 5
+
 @NgModule({
   declarations: [
     AppComponent,
     AddWordComponent,
     WordListComponent,
     MultiComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    NgbdModalComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     NgReduxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     WordService,
     ValidationService,
     WordActions
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [NgbdModalComponent]
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
