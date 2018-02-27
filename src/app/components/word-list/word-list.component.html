@@ -1,6 +1,6 @@
 <div class="words-list tile-view">
-  <div *ngFor="let w of words$ | async" class="one-word" (click)="wordDetialsModal(w)">
-    <div (click)="editWord(w)" class="edit">
+  <div *ngFor="let w of words$ | async" class="one-word" (click)="wordDetialsModal(w); $event.stopPropagation();">
+    <div (click)="editWord(w); $event.stopPropagation();" class="edit">
       <i class="fa fa-pencil"></i>
     </div>
     <div class="images" *ngFor="let image of w.images">
