@@ -3,4 +3,8 @@
 @import 'helpers/fonts';
 @import 'vendors/custom-bootstrap';
 
+// custom components
+@import 'components/limit-length';
+@import 'components/multi-item';
+
 @import 'general/general';

@@ -3,8 +3,7 @@ import { FormBuilder, Validators, FormGroup, FormControl, ControlContainer } fro
 import { ValidationService } from 'app/services/validation.service';
 @Component({
   selector: 'bw-multi',
-  templateUrl: './multi.component.html',
-  styleUrls: ['./multi.component.scss']
+  templateUrl: './multi.component.html'
 })
 export class MultiComponent implements OnInit {
   @Input() type;

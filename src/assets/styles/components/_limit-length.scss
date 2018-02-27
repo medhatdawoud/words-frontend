@@ -1,0 +1,72 @@
+.textarea-container {
+    display: block;
+    transform: translateZ(0);
+    -webkit-text-size-adjust: none;
+    &,
+    .backdrop,
+    textarea {
+        width: 100%; // width: 100%;
+        height: 180px;
+        box-sizing: border-box
+    }
+    .backdrop {
+        position: absolute;
+        z-index: 1;
+        background-color: #fff;
+        overflow: auto;
+        pointer-events: none;
+        transition: transform 1s;
+    }
+    .textarea-highlights,
+    textarea {
+        padding: 10px; //font: 20px/28px 'Open Sans', sans-serif;
+        font-family: $bw-font-first !important;
+        letter-spacing: 1px;
+    }
+    .textarea-highlights {
+        padding: 25px 15px 0px;
+        line-height: 30px;
+        white-space: pre-wrap;
+        word-wrap: break-word; //font-size: 18px;
+        color: transparent; //letter-spacing: 1;
+        mark {
+            border-radius: 3px;
+            color: transparent;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: rgba(255, 0, 0, 0.25);
+        }
+    }
+    textarea {
+        border-radius: 5px;
+        display: block;
+        position: absolute;
+        z-index: 2;
+        margin: 0;
+        background-color: transparent !important;
+        overflow: auto;
+        resize: none;
+        transition: transform 1s;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    textarea:focus~.textarea-countdown {
+        display: block;
+    }
+    .textarea-countdown {
+        color: green;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        width: 30px;
+        height: 40px;
+        font-size: 18px;
+        z-index: 1;
+        text-align: right;
+        display: none;
+
+        &.exceed {
+          color: red;
+        }
+    }
+}

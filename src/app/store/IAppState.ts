@@ -1,4 +1,4 @@
-import { Word } from '../components';
+import { Word } from './IWord';
 
 export interface IAppState {
     currentWord: Word,

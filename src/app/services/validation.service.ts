@@ -41,25 +41,29 @@ export class ValidationService {
       return null;
     } else if (control.value.match(ValidationService.pattern.synonym)) {
       return null;
-    }else {
+    } else {
       return { 'invalidSynonym': true };
     }
 
   }
 
   imageValidator(control) {
-    if (control.value && control.value.match(ValidationService.pattern.images)) {
-      return null;
-    } else {
-      return { 'invalidImages': true };
+    if (control.value) {
+      if (control.value.match(ValidationService.pattern.images)) {
+        return null;
+      } else {
+        return { 'invalidImages': true };
+      }
     }
   }
 
   tagsValidator(control) {
-    if (control.value && control.value.match(ValidationService.pattern.tags)) {
-      return null;
-    } else {
-      return { 'invalidTags': true };
+    if (control.value) {
+      if (control.value.match(ValidationService.pattern.tags)) {
+        return null;
+      } else {
+        return { 'invalidTags': true };
+      }
     }
   }
 

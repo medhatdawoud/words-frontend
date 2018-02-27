@@ -1,4 +1,4 @@
-import { Word } from '../components';
+import { Word } from './IWord';
 import { IAppState } from './IAppState';
 import types from './constants';
 

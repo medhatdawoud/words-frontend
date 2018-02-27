@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MultiComponent } from './../../shared/ui-components';
+import { MultiComponent } from './../';
 import { WordService, ValidationService } from '../../services';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
@@ -46,7 +46,7 @@ export class AddWordComponent implements OnInit {
     this.addWordForm = this.formBuilder.group({
       'word': ['', Validators.compose([Validators.required, this.validationService.wordValidator])],
       'pronounce': ['', Validators.compose([Validators.required, this.validationService.pronounceValidator])],
-      'description': ['', Validators.compose([Validators.required, Validators.maxLength(300)])],
+      'description': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'multiControl': this.formBuilder.group({
         'synonym': ['', Validators.compose([this.validationService.synonymValidator, Validators.maxLength(20)])],
         'images': ['', Validators.compose([this.validationService.imageValidator])],

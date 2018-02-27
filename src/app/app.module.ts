@@ -7,12 +7,11 @@ import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, store, WordActions } from './store';
 
 import { AppComponent } from './app.component';
-import { AddWordComponent, WordListComponent } from './components';
+import { AddWordComponent, WordListComponent, MultiComponent, ErrorMessageComponent, NgbdModalComponent} from './components';
 import { WordService, ValidationService } from './services';
-import { MultiComponent, ErrorMessageComponent } from './shared/ui-components';
+import { LimitLengthDirective } from './directives';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalComponent } from 'app/components/word-list/word-list.component';
 
 // TODO: Update anguar to version 5
 
@@ -23,7 +22,8 @@ import { NgbdModalComponent } from 'app/components/word-list/word-list.component
     WordListComponent,
     MultiComponent,
     ErrorMessageComponent,
-    NgbdModalComponent
+    NgbdModalComponent,
+    LimitLengthDirective
   ],
   imports: [
     BrowserModule,

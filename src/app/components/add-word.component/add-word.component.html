@@ -26,8 +26,15 @@
       <bw-error-message [control]="addWordForm.controls.pronounce"></bw-error-message>
     </div>
     <div class="form-group">
-      <textarea name="description" (keyup)="autoResize()" id="resizableTextarea" formControlName="description" class="form-control" [(ngModel)]="word.description" required rows="3"></textarea>
-      <label for="">Description</label>
+      <div class="textarea-container" id='textarea-container'>
+        <div class="backdrop" id='backdrop'>
+          <div class="textarea-highlights" id='textarea-highlights'></div>
+        </div>
+        <textarea name="description" appLimitLength [maxLength]="30" [countDown]="30" id="resizableTextarea" formControlName="description"
+          class="form-control textarea" [(ngModel)]="word.description" required rows="3"></textarea>
+        <label for="">Description</label>
+        <div class='textarea-countdown' id='textarea-countdown'>30</div>
+      </div>
       <bw-error-message [control]="addWordForm.controls.description"></bw-error-message>
     </div>
     <bw-multi [(items)]="word.images" formGroupName="multiControl" label="Image url" type="images" maxLength="4"></bw-multi>
@@ -47,7 +54,7 @@
     </div>-->
     <div class="form-group text-right">
       <button *ngIf="word._id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word._id)"><i class="fa fa-times"></i> Delete</button>
-      <button class="btn btn-lg btn-primary" (click)="saveWord()" ><i class="fa fa-check"></i> Save word</button>
+      <button class="btn btn-lg btn-primary" (click)="saveWord()"><i class="fa fa-check"></i> Save word</button>
     </div>
   </form>
 </div>

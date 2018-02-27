@@ -2,8 +2,8 @@
   <div class="input-group" [formGroup]="multiControlForm">
     <input type="text" [formControlName]="type" (change)="changeState(item)" [ngClass]="{'filled' : filledValue}" name="item" class="form-control multi" [(ngModel)]="item" />
     <label for="{{label}}">{{label}}</label>
-    <span class="input-group-btn">
-      <button class="btn btn-default" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item,type)"><i class="fa fa-plus"></i> Add</button>
+    <span class="input-group-append">
+      <button class="btn btn-secondary" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item,type)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
   <bw-error-message *ngIf="type == 'images'" [control]="multiControlForm.controls.images"></bw-error-message>
@@ -11,7 +11,7 @@
   <bw-error-message *ngIf="type == 'examples'" [control]="multiControlForm.controls.examples"></bw-error-message>
   <bw-error-message *ngIf="type == 'synonym'" [control]="multiControlForm.controls.synonym"></bw-error-message>
 
-  <div class="images-preview" *ngIf="type == 'images'">
+  <div class="images-preview" *ngIf="type == 'images' && items.length > 0">
     <div class="one-image" *ngFor="let itm of items; let Index = index">
       <img [src]="itm">
       <div class="remove" (click)="removeItem(Index)">
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="examples-preview" *ngIf="type == 'examples'">
+  <div class="examples-preview" *ngIf="type == 'examples' && items.length > 0">
     <div class="one-example" *ngFor="let itm of items; let Index = index">
       {{itm}}
       <div class="remove" (click)="removeItem(Index)">
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="tags-preview" *ngIf="type == 'tags' || type == 'synonym'">
+  <div class="tags-preview" *ngIf="type == 'tags' || type == 'synonym' && items.length > 0">
     <div class="one-tag" *ngFor="let itm of items; let Index = index">
       {{itm}}
       <div class="remove" (click)="removeItem(Index)">

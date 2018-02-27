@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { store, IAppState, WordActions } from '../../store';
+import { store, IAppState, WordActions, Word } from '../../store';
 import { NgRedux, select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-import { Word } from '../IWord';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { WordService } from '../../services';
 
