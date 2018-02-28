@@ -1,5 +1,5 @@
 <div class="words-list tile-view">
-  <div *ngFor="let w of words$ | async" class="one-word" (click)="wordDetialsModal(w); $event.stopPropagation();">
+  <div *ngFor="let w of words$ | async" class="one-word" (click)="wordDetialsModal(w)">
     <div (click)="editWord(w); $event.stopPropagation();" class="edit">
       <i class="fa fa-pencil"></i>
     </div>
@@ -12,17 +12,4 @@
       <small *ngIf="w.pronounce">[{{w.pronounce}}]</small>
     </div>
   </div>
-  <!--<div *ngFor="let w of words" class="one-word">
-    <div class="edit">
-      <i (click)="editWord(w)" class="fa fa-pencil"></i>
-    </div>
-    <div class="images" *ngFor="let image of w.images">
-      <img [src]="image" alt="" width="100">
-    </div>
-    <div class="word">
-      {{w.word}}
-      <br>
-      <small *ngIf="w.pronouce">[{{w.pronouce}}]</small>
-    </div>
-  </div>-->
 </div>
