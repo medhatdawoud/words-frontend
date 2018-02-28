@@ -1,4 +1,20 @@
+import { Injectable } from '@angular/core';
+
+import { IAppState } from '../store';
+import { NgRedux } from '@angular-redux/store';
+
+@Injectable()
 export class ValidationService {
+  static word: any;
+
+  constructor(private ngRedux: NgRedux<IAppState>) {
+    ngRedux.select('currentWord')
+      .subscribe(data => {
+        ValidationService.word = Object.assign({}, data);
+      });
+  }
+
+  // tslint:disable-next-line:member-ordering
   static pattern = {
     'word': /^[a-zA-Z]*$/,
     'Pronounce': /^[a-z](?!.*--)[a-z-]*[a-z]$/,
@@ -7,12 +23,14 @@ export class ValidationService {
     'tags': /^[a-zA-Z](?!.*--)[a-zA-Z-]*[a-zA-Z]$/
   };
 
+
   getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
     const errorMessages = {
       'required': 'Required',
       'invalidWord': 'invalid word name , only accept alphabets',
       'invalidSynonym': 'invalid synonym name , only accept alphabets',
       'invalidImages': 'invalid image Url ',
+      'requiredLimit': 'required at least 1 item',
       'invalidExamples': 'invalid example ',
       'invalidTags': 'invalid tag ',
       'invalidPronounce': 'invalid pronounce ,only accept lowercase alphabet and dashes',
@@ -29,9 +47,7 @@ export class ValidationService {
     }
   }
   pronounceValidator(control) {
-    if (control.value && control.value.match(ValidationService.pattern.Pronounce)) {
-      return null;
-    } else {
+    if (control.value && !control.value.match(ValidationService.pattern.Pronounce)) {
       return { 'invalidPronounce': true };
     }
   }
@@ -53,6 +69,19 @@ export class ValidationService {
         return null;
       } else {
         return { 'invalidImages': true };
+      }
+    }
+  }
+
+  validateRequiredNumberOfItems(control) {
+    if (ValidationService.word) {
+      // console.log(ValidationService.word.images.length);
+      // TODO: need to be general not checking only images
+      // TODO: needs to run on submit as well
+      if (ValidationService.word.images.length >= 1) {
+        return null;
+      } else {
+        return { 'requiredLimit': true };
       }
     }
   }

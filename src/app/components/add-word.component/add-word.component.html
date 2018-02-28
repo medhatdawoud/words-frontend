@@ -19,7 +19,6 @@
       <label for="">Word</label>
       <bw-error-message [control]="addWordForm.controls.word"></bw-error-message>
     </div>
-    <bw-multi [(items)]="word.synonym" formGroupName="multiControl" label="Synonym" type="synonym" maxLength="4"></bw-multi>
     <div class="form-group">
       <input type="text" name="pronounce" formControlName="pronounce" class="form-control" [(ngModel)]="word.pronounce" required/>
       <label for="">Pronounce</label>
@@ -37,9 +36,13 @@
       </div>
       <bw-error-message [control]="addWordForm.controls.description"></bw-error-message>
     </div>
-    <bw-multi [(items)]="word.images" formGroupName="multiControl" label="Image url" type="images" maxLength="4"></bw-multi>
-    <bw-multi [(items)]="word.examples" formGroupName="multiControl" label="Example" type="examples" maxLength="5"></bw-multi>
-    <bw-multi [(items)]="word.tags" formGroupName="multiControl" label="Tag" type="tags" maxLength="3"></bw-multi>
+    <button (click)="addMoreDetails = true" *ngIf="!addMoreDetails" class="btn btn-block btn-link">Click to add more word details ... </button>
+    <div class="add-more-details" *ngIf="addMoreDetails">
+      <bw-multi [(items)]="word.synonym" formGroupName="multiControl" label="Synonym" type="synonym" maxLength="4"></bw-multi>
+      <bw-multi [(items)]="word.images" formGroupName="multiControl" label="Image url" type="images" maxLength="4" [submitted]="formSubmitted"></bw-multi>
+      <bw-multi [(items)]="word.examples" formGroupName="multiControl" label="Example" type="examples" maxLength="5" [submitted]="formSubmitted"></bw-multi>
+      <bw-multi [(items)]="word.tags" formGroupName="multiControl" label="Tag" type="tags" maxLength="3" [submitted]="formSubmitted"></bw-multi>
+    </div>
     <!--<div class="form-group">
       <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
       <label for="">Type</label>

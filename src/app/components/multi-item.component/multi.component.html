@@ -1,15 +1,15 @@
 <div class="form-group multi-component">
   <div class="input-group" [formGroup]="multiControlForm">
-    <input type="text" [formControlName]="type" (change)="changeState(item)" [ngClass]="{'filled' : filledValue}" name="item" class="form-control multi" [(ngModel)]="item" />
+    <input type="text" [formControlName]="type" #itemInput (change)="changeState(item)" [ngClass]="{'filled' : filledValue}" name="item" class="form-control multi" [(ngModel)]="item" />
     <label for="{{label}}">{{label}}</label>
     <span class="input-group-append">
-      <button class="btn btn-secondary" [disabled]="!item ||  items?.length >= maxLength" type="button" (click)="addItem(item,type)"><i class="fa fa-plus"></i> Add</button>
+      <button class="btn btn-secondary" [disabled]="!item || !item.trim() ||  items?.length >= maxLength" type="button" (click)="addItem(item,type, itemInput)"><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
-  <bw-error-message *ngIf="type == 'images'" [control]="multiControlForm.controls.images"></bw-error-message>
-  <bw-error-message *ngIf="type == 'tags'" [control]="multiControlForm.controls.tags"></bw-error-message>
-  <bw-error-message *ngIf="type == 'examples'" [control]="multiControlForm.controls.examples"></bw-error-message>
-  <bw-error-message *ngIf="type == 'synonym'" [control]="multiControlForm.controls.synonym"></bw-error-message>
+  <bw-error-message *ngIf="type == 'images'" [control]="multiControlForm.controls.images" [formSubmitted]="submitted"></bw-error-message>
+  <bw-error-message *ngIf="type == 'tags'" [control]="multiControlForm.controls.tags" [formSubmitted]="submitted"></bw-error-message>
+  <bw-error-message *ngIf="type == 'examples'" [control]="multiControlForm.controls.examples" [formSubmitted]="submitted"></bw-error-message>
+  <bw-error-message *ngIf="type == 'synonym'" [control]="multiControlForm.controls.synonym" [formSubmitted]="submitted"></bw-error-message>
 
   <div class="images-preview" *ngIf="type == 'images' && items.length > 0">
     <div class="one-image" *ngFor="let itm of items; let Index = index">

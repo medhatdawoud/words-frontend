@@ -9,11 +9,15 @@ import { ValidationService } from 'app/services';
 })
 export class ErrorMessageComponent {
   @Input() control: FormControl;
+  @Input() formSubmitted: Boolean;
   constructor(private validationService: ValidationService) { }
 
   get errorMessage() {
     for (const propertyName in this.control.errors) {
       if (this.control.touched && this.control.errors.hasOwnProperty(propertyName)) {
+        if (propertyName === 'requiredLimit' && !this.formSubmitted) {
+          continue;
+        }
         return this.validationService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
       }
     }

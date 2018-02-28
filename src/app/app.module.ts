@@ -35,8 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [
     WordService,
-    ValidationService,
-    WordActions
+    WordActions,
+    ValidationService
   ],
   bootstrap: [AppComponent],
 

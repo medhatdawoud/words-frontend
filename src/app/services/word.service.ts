@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WordService {
   apiUrl = 'https://beeswords.herokuapp.com/';
-  // apiUrl = "http://localhost:8080";
+  // apiUrl = 'http://localhost:8080';
 
   constructor(private http: Http) { }
 

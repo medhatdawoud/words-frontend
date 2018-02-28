@@ -11,7 +11,7 @@
     }
     .backdrop {
         position: absolute;
-        z-index: 1;
+        z-index: $bw-z-index-5;
         background-color: #fff;
         overflow: auto;
         pointer-events: none;

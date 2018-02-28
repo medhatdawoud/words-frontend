@@ -16,6 +16,8 @@ export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
   word: any;
   controlName = false;
+  formSubmitted = false;
+  addMoreDetails = false;
 
   languages = [{
     name: 'Arabic',
@@ -33,25 +35,31 @@ export class AddWordComponent implements OnInit {
   constructor(private _wordService: WordService,
     private ngRedux: NgRedux<IAppState>,
     private validationService: ValidationService,
-    private wordActions: WordActions, private formBuilder: FormBuilder) {
+    private wordActions: WordActions,
+    private form: FormBuilder) {
   }
 
   ngOnInit() {
-
     this.ngRedux.select('currentWord')
       .subscribe(data => {
         this.word = Object.assign({}, data);
+
+        if (this.word.synonym.length || this.word.images.length || this.word.examples.length || this.word.tags.length) {
+          this.addMoreDetails = true;
+        } else {
+          this.addMoreDetails = false;
+        }
       });
     // Initialize our form
-    this.addWordForm = this.formBuilder.group({
-      'word': ['', Validators.compose([Validators.required, this.validationService.wordValidator])],
-      'pronounce': ['', Validators.compose([Validators.required, this.validationService.pronounceValidator])],
-      'description': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
-      'multiControl': this.formBuilder.group({
-        'synonym': ['', Validators.compose([this.validationService.synonymValidator, Validators.maxLength(20)])],
-        'images': ['', Validators.compose([this.validationService.imageValidator])],
-        'examples': ['', Validators.compose([Validators.maxLength(100)])],
-        'tags': ['', Validators.compose([this.validationService.tagsValidator])],
+    this.addWordForm = this.form.group({
+      'word': ['', [Validators.required, this.validationService.wordValidator]],
+      'pronounce': ['', [Validators.required, this.validationService.pronounceValidator]],
+      'description': ['', [Validators.required, Validators.maxLength(300)]],
+      'multiControl': this.form.group({
+        'synonym': ['', [this.validationService.synonymValidator, Validators.maxLength(20)]],
+        'images': ['', [this.validationService.imageValidator]],
+        'examples': ['', [Validators.maxLength(100)]],
+        'tags': ['', [this.validationService.tagsValidator]],
       })
     });
 
@@ -69,16 +77,30 @@ export class AddWordComponent implements OnInit {
       } else {
         this.wordActions.addWord(this.word);
       }
+      this.addMoreDetails = false;
     } else {
+      // tslint:disable-next-line:forin
       for (const key in this.addWordForm.controls) {
         if (this.addWordForm.controls[key]) {
           this.addWordForm.controls[key].markAsTouched();
         }
+        if (key === 'multiControl') {
+          const formMulti: any = this.addWordForm.controls.multiControl;
+
+          // tslint:disable-next-line:forin
+          for (const k in formMulti.controls) {
+            formMulti.controls[k].markAsTouched();
+          }
+        }
       }
     }
+    this.formSubmitted = true;
   }
+
   deleteWord() {
     this.wordActions.deleteWord(this.word._id);
+    this.formSubmitted = false;
+    this.addMoreDetails = false;
   }
 
   changeSelectedLanguage(lang) {

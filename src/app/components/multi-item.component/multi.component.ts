@@ -10,6 +10,7 @@ export class MultiComponent implements OnInit {
   @Input() items;
   @Input() label;
   @Input() maxLength = 5;
+  @Input() submitted = false;
   item = null;
   filledValue = false;
   public multiControlForm: FormGroup;
@@ -24,22 +25,24 @@ export class MultiComponent implements OnInit {
     this.items.splice(index, 1);
   }
 
-  addItem(oneItem, type) {
-    if (type === 'images') {
-      if (this.multiControlForm.controls.images.valid) {
-        this.items.push(oneItem);
-      }
-    } else if (type === 'tags') {
-      if (this.multiControlForm.controls.tags.valid) {
-        this.items.push(oneItem);
-      }
-    } else if (type === 'examples') {
-      if (this.multiControlForm.controls.examples.valid) {
-        this.items.push(oneItem);
-      }
-    } else if (type === 'synonym') {
-      if (this.multiControlForm.controls.synonym.valid) {
-        this.items.push(oneItem);
+  addItem(oneItem, type, input) {
+    if (oneItem.trim() !== '') {
+      if (type === 'images') {
+        if (!this.multiControlForm.controls.images.errors || !this.multiControlForm.controls.images.errors.invalidImages) {
+          this.items.push(oneItem);
+        }
+      } else if (type === 'tags') {
+        if (!this.multiControlForm.controls.tags.errors || !this.multiControlForm.controls.tags.errors.invalidTags) {
+          this.items.push(oneItem);
+        }
+      } else if (type === 'examples') {
+        if (!this.multiControlForm.controls.examples.errors || !this.multiControlForm.controls.examples.errors.invalidExamples) {
+          this.items.push(oneItem);
+        }
+      } else if (type === 'synonym') {
+        if (!this.multiControlForm.controls.synonym.errors || !this.multiControlForm.controls.synonym.errors.invalidSynonym) {
+          this.items.push(oneItem);
+        }
       }
     }
   }
