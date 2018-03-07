@@ -66,33 +66,21 @@ export class AddWordComponent implements OnInit {
   }
 
   saveWord() {
-    for (const key in this.addWordForm.controls) {
-      if (!this.addWordForm.contains['multiControl'] && this.addWordForm.controls[key].valid) {
-        this.controlName = true;
-      }
-    }
-    if (this.word.images.length >= 1 && this.word.examples.length >= 1 && this.word.tags.length >= 1 && this.controlName) {
+    if (this.addWordForm.valid) {
       if (this.word._id) {
         this.wordActions.updateWord(this.word);
       } else {
         this.wordActions.addWord(this.word);
       }
       this.addMoreDetails = false;
+      this.addWordForm.markAsPristine();
     } else {
-      // tslint:disable-next-line:forin
       for (const key in this.addWordForm.controls) {
         if (this.addWordForm.controls[key]) {
           this.addWordForm.controls[key].markAsTouched();
         }
-        if (key === 'multiControl') {
-          const formMulti: any = this.addWordForm.controls.multiControl;
-
-          // tslint:disable-next-line:forin
-          for (const k in formMulti.controls) {
-            formMulti.controls[k].markAsTouched();
-          }
-        }
       }
+      this.addWordForm.markAsDirty();
     }
     this.formSubmitted = true;
   }

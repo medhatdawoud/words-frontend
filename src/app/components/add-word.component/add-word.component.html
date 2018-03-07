@@ -17,12 +17,12 @@
     <div class="form-group">
       <input type="text" formControlName="word" name="word" class="form-control" [(ngModel)]="word.word" required />
       <label for="">Word</label>
-      <bw-error-message [control]="addWordForm.controls.word"></bw-error-message>
+      <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.word"></bw-error-message>
     </div>
     <div class="form-group">
       <input type="text" name="pronounce" formControlName="pronounce" class="form-control" [(ngModel)]="word.pronounce" required/>
       <label for="">Pronounce</label>
-      <bw-error-message [control]="addWordForm.controls.pronounce"></bw-error-message>
+      <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.pronounce"></bw-error-message>
     </div>
     <div class="form-group">
       <div class="textarea-container" id='textarea-container'>
@@ -34,7 +34,7 @@
         <label for="">Description</label>
         <div class='textarea-countdown' id='textarea-countdown'>30</div>
       </div>
-      <bw-error-message [control]="addWordForm.controls.description"></bw-error-message>
+      <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.description"></bw-error-message>
     </div>
     <button (click)="addMoreDetails = true" *ngIf="!addMoreDetails" class="btn btn-block btn-link">Click to add more word details ... </button>
     <div class="add-more-details" *ngIf="addMoreDetails">

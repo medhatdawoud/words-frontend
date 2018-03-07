@@ -15,9 +15,6 @@ export class ErrorMessageComponent {
   get errorMessage() {
     for (const propertyName in this.control.errors) {
       if (this.control.touched && this.control.errors.hasOwnProperty(propertyName)) {
-        if (propertyName === 'requiredLimit' && !this.formSubmitted) {
-          continue;
-        }
         return this.validationService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
       }
     }
