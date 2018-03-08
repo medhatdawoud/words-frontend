@@ -43,7 +43,7 @@ import { WordService } from '../../services';
 export class NgbdModalComponent {
   @Input() currentWordCopy;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal) { }
 }
 
 
@@ -53,10 +53,13 @@ export class NgbdModalComponent {
   styleUrls: ['./word-list.component.scss']
 })
 export class WordListComponent implements OnInit {
-  @select('words') words$: Observable<Word>;
+  @select('filteredWords') words$: Observable<Word>;
   words = [];
-  constructor(private ngRedux: NgRedux<IAppState>, private wordActions: WordActions, private _wordService: WordService
-    , private modalService: NgbModal) {
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private wordActions: WordActions,
+    private _wordService: WordService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -72,8 +75,8 @@ export class WordListComponent implements OnInit {
   }
 
   wordDetialsModal(word) {
-      const modalRef = this.modalService.open(NgbdModalComponent);
-      modalRef.componentInstance.currentWordCopy = Object.assign({}, word);
+    const modalRef = this.modalService.open(NgbdModalComponent);
+    modalRef.componentInstance.currentWordCopy = Object.assign({}, word);
 
-    }
+  }
 }

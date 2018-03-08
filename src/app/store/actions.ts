@@ -57,4 +57,11 @@ export class WordActions {
                 })
             });
     }
+
+    filterWords(search) {
+        this.ngRedux.dispatch({
+            type: types.SEARCH_WORD_SUCCED,
+            payload: search
+        })
+    }
 }

@@ -7,7 +7,14 @@ import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, store, WordActions } from './store';
 
 import { AppComponent } from './app.component';
-import { AddWordComponent, WordListComponent, MultiComponent, ErrorMessageComponent, NgbdModalComponent} from './components';
+import {
+  AddWordComponent,
+  WordListComponent,
+  MultiComponent,
+  ErrorMessageComponent,
+  NgbdModalComponent,
+  FilterBarComponent
+} from './components';
 import { WordService, ValidationService } from './services';
 import { LimitLengthDirective } from './directives';
 
@@ -23,7 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MultiComponent,
     ErrorMessageComponent,
     NgbdModalComponent,
-    LimitLengthDirective
+    LimitLengthDirective,
+    FilterBarComponent
   ],
   imports: [
     BrowserModule,

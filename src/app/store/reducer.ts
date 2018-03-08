@@ -18,13 +18,15 @@ const initialState: IAppState = {
         images: []
     },
     words: [],
+    filteredWords: [],
 }
 
 export function reducer(state = initialState, action) {
     switch (action.type) {
         case types.GET_ALL_WORDS_SUCCEED:
             return Object.assign({}, state, {
-                words: action.payload
+                words: action.payload,
+                filteredWords: action.payload,
             });
         case types.CHANGE_CURRENT_WORD_SUCCEED:
             return Object.assign({}, state, {
@@ -33,7 +35,8 @@ export function reducer(state = initialState, action) {
         case types.ADD_WORD_SUCCEED:
             return Object.assign({}, state, {
                 currentWord: Object.assign({}, initialState.currentWord),
-                words: state.words.concat([action.payload])
+                words: state.words.concat([action.payload]),
+                filteredWords: state.words.concat([action.payload])
             });
         case types.UPDATE_WORD_SUCCEED: {
             const words = state.words;
@@ -42,9 +45,11 @@ export function reducer(state = initialState, action) {
                     words[index] = action.payload;
                 }
             });
+            const filteredWords = Object.assign({}, words);
             return Object.assign({}, state, {
                 currentWord: Object.assign({}, initialState.currentWord),
-                words
+                words,
+                filteredWords,
             });
         }
         case types.DELETE_WORD_SUCCEED: {
@@ -54,12 +59,35 @@ export function reducer(state = initialState, action) {
                     words.splice(index, 1);
                 }
             });
+            const filteredWords = Object.assign({}, words);
             return Object.assign({}, state, {
                 currentWord: Object.assign({}, initialState.currentWord),
-                words
+                words,
+                filteredWords,
             });
+        }
+        case types.SEARCH_WORD_SUCCED: {
+            const search = action.payload.toLowerCase();
+            const words = state.words;
+            if (!search) {
+                return Object.assign({}, state, {filteredWords: words});
+            }
+            const newWords = words.filter((element) => {
+                return element.word.toLowerCase().indexOf(search) > -1
+                    || filterMultipleItems(element.synonym, search)
+                    || filterMultipleItems(element.tags, search)
+            })
+            return Object.assign({}, state, { filteredWords: newWords });
         }
         default:
             return state;
+    }
+}
+
+function filterMultipleItems(items, search) {
+    for (const item in items) {
+        if (item.toLowerCase().indexOf(search) > -1) {
+            return true;
+        }
     }
 }
