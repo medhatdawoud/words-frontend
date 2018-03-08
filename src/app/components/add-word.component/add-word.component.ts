@@ -10,7 +10,6 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'bw-add-word',
   templateUrl: './add-word.component.html',
-  styleUrls: ['./add-word.component.scss']
 })
 export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;

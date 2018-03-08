@@ -50,7 +50,6 @@ export class NgbdModalComponent {
 @Component({
   selector: 'bw-word-list',
   templateUrl: './word-list.component.html',
-  styleUrls: ['./word-list.component.scss']
 })
 export class WordListComponent implements OnInit {
   @select('filteredWords') words$: Observable<Word>;
