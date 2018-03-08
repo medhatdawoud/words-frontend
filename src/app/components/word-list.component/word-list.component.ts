@@ -52,7 +52,6 @@ export class NgbdModalComponent {
   templateUrl: './word-list.component.html',
 })
 export class WordListComponent implements OnInit {
-  @select('filteredWords') words$: Observable<Word>;
   words = [];
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -63,10 +62,10 @@ export class WordListComponent implements OnInit {
 
   ngOnInit() {
     this.wordActions.getAllWords();
-    // this._wordService.getAllWords()
-    //   .subscribe((allWords) => {
-    //     this.words = allWords.data;
-    //   });
+    this.ngRedux.select('filteredWords')
+      .subscribe(res => {
+          this.words = (<any>Object).values(res);
+      });
   }
 
   editWord(word) {
