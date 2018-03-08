@@ -74,8 +74,8 @@ export function reducer(state = initialState, action) {
             }
             const newWords = words.filter((element) => {
                 return element.word.toLowerCase().indexOf(search) > -1
-                    || filterMultipleItems(element.synonym, search)
-                    || filterMultipleItems(element.tags, search)
+                 || filterMultipleItems(element.synonym, search)
+                 || filterMultipleItems(element.tags, search)
             })
             return Object.assign({}, state, { filteredWords: newWords });
         }
@@ -85,7 +85,7 @@ export function reducer(state = initialState, action) {
 }
 
 function filterMultipleItems(items, search) {
-    for (const item in items) {
+    for (const item of items) {
         if (item.toLowerCase().indexOf(search) > -1) {
             return true;
         }
