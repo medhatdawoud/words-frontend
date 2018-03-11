@@ -1,3 +1,15 @@
 <div class="filter-bar">
   <input type="search" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" (keyup)="search(searchTerm)" placeholder="Search by word, synonyms, or tags">
 </div>
+<div class="dropdown pull-right">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="true">
+    <span *ngIf="selectSorting"></span> {{ selectSorting.label }}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-languages" aria-labelledby="dropdownMenu1">
+    <li *ngFor="let sort of sortWordsOptions" [ngClass]="{'active' : sort == selectSorting}">
+      <a href="javascript:void(0)" (click)="changeSelectedSort(sort)">{{sort.label}}</a>
+    </li>
+  </ul>
+</div>

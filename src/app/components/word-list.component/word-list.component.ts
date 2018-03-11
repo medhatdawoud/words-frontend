@@ -4,6 +4,7 @@ import { NgRedux, select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { WordService } from '../../services';
+import { OrderByPipe } from '../../pipes';
 
 @Component({
   selector: 'bw-modal-content',
@@ -53,6 +54,8 @@ export class NgbdModalComponent {
 })
 export class WordListComponent implements OnInit {
   words = [];
+  sort = null;
+
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private wordActions: WordActions,
@@ -64,7 +67,11 @@ export class WordListComponent implements OnInit {
     this.wordActions.getAllWords();
     this.ngRedux.select('filteredWords')
       .subscribe(res => {
-          this.words = (<any>Object).values(res);
+        this.words = (<any>Object).values(res);
+      });
+    this.ngRedux.select('sort')
+      .subscribe(res => {
+        this.sort = Object.assign({}, this.sort, res);
       });
   }
 

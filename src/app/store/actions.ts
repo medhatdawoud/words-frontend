@@ -64,4 +64,11 @@ export class WordActions {
             payload: search
         })
     }
+
+    sortWords(sortObj) {
+        this.ngRedux.dispatch({
+            type: types.SORT_WORD_SUCCED,
+            payload: sortObj
+        })
+    }
 }

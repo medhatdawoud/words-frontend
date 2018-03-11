@@ -19,6 +19,7 @@ import { WordService, ValidationService } from './services';
 import { LimitLengthDirective } from './directives';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderByPipe } from './pipes';
 
 // TODO: Update anguar to version 5
 
@@ -31,7 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ErrorMessageComponent,
     NgbdModalComponent,
     LimitLengthDirective,
-    FilterBarComponent
+    FilterBarComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

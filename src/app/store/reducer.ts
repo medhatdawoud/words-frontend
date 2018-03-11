@@ -19,6 +19,11 @@ const initialState: IAppState = {
     },
     words: [],
     filteredWords: [],
+    sort: {
+        label: 'Oldest first',
+        field: 'addedAt',
+        direction: 'ASC'
+    }
 }
 
 export function reducer(state = initialState, action) {
@@ -78,6 +83,11 @@ export function reducer(state = initialState, action) {
                  || filterMultipleItems(element.tags, search)
             })
             return Object.assign({}, state, { filteredWords: newWords });
+        }
+        case types.SORT_WORD_SUCCED: {
+            return Object.assign({}, state, {
+                sort: action.payload
+            });
         }
         default:
             return state;
