@@ -1,6 +1,6 @@
-
 <div class="words-list-component tile-view">
-  <div *ngFor="let w of words | orderBy:{field: sort.field, direction: sort.direction}" class="one-word" (click)="wordDetialsModal(w)">
+  <div *ngFor="let w of words | orderBy:{field: sort.field, direction: sort.direction}" class="one-word" data-toggle="modal"
+    data-target="#myModal" (click)="wordDetialsModal(w)">
     <div (click)="editWord(w); $event.stopPropagation();" class="edit">
       <i class="fa fa-pencil"></i>
     </div>
@@ -11,6 +11,53 @@
       {{w.word}}
       <br>
       <small *ngIf="w.pronounce">[{{w.pronounce}}]</small>
+    </div>
+  </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <p id="wordName"></p>
+
+        <p id="wordPronounce"></p>
+
+        <p id="wordDescription"> </p>
+
+        <p>
+            <span id="wordSynonym"></span>
+          </p>
+        <p>
+          <span id="wordImages"> </span>
+        </p>
+
+        <p>
+          <span id="wordExamples"></span>
+        </p>
+
+        <p>
+          <span id="wordTags"></span>
+        </p>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
     </div>
   </div>
 </div>

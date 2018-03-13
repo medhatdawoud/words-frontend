@@ -12,13 +12,11 @@ import {
   WordListComponent,
   MultiComponent,
   ErrorMessageComponent,
-  NgbdModalComponent,
   FilterBarComponent
 } from './components';
 import { WordService, ValidationService } from './services';
 import { LimitLengthDirective } from './directives';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderByPipe } from './pipes';
 
 // TODO: Update anguar to version 5
@@ -30,7 +28,6 @@ import { OrderByPipe } from './pipes';
     WordListComponent,
     MultiComponent,
     ErrorMessageComponent,
-    NgbdModalComponent,
     LimitLengthDirective,
     FilterBarComponent,
     OrderByPipe
@@ -41,7 +38,6 @@ import { OrderByPipe } from './pipes';
     FormsModule,
     NgReduxModule,
     ReactiveFormsModule,
-    NgbModule.forRoot()
   ],
   providers: [
     WordService,
@@ -50,7 +46,6 @@ import { OrderByPipe } from './pipes';
   ],
   bootstrap: [AppComponent],
 
-  entryComponents: [NgbdModalComponent]
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {

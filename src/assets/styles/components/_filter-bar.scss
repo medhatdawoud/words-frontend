@@ -1,0 +1,14 @@
+.filter-word-component{
+    .dropdown {
+        .dropdown-order {
+            min-width   : 7.8rem;
+            div {
+                &.active {
+                    .order {
+                        background  : $bw-grey-01;
+                    }
+                }
+            }
+        }
+    }
+}

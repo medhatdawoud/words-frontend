@@ -32,10 +32,11 @@ export class FilterBarComponent implements OnInit {
     private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-    this.ngRedux.select('sort')
+    /*this.ngRedux.select('sort')
       .subscribe(res => {
         this.selectSorting = <any>res;
-      });
+      });*/
+      this.selectSorting = this.sortWordsOptions[1];
   }
 
   search(searchTerm, sortType) {
