@@ -27,6 +27,8 @@ export class FilterBarComponent implements OnInit {
   ];
 
   selectSorting = null;
+  words: any;
+  filteredWords: any;
 
   constructor(private wordActions: WordActions,
     private ngRedux: NgRedux<IAppState>) { }
@@ -36,11 +38,25 @@ export class FilterBarComponent implements OnInit {
       .subscribe(res => {
         this.selectSorting = <any>res;
       });*/
-      this.selectSorting = this.sortWordsOptions[1];
+    this.ngRedux.select('filteredWords')
+      .subscribe(res => {
+        this.filteredWords = (<any>Object).values(res);
+      });
+        this.ngRedux.select('words')
+         .subscribe(res => {
+           this.words = (<any>Object).values(res);
+         });
+    this.selectSorting = this.sortWordsOptions[1];
   }
 
   search(searchTerm, sortType) {
+    const viwedWordNumber = document.getElementById('viwedWordNumber');
     this.wordActions.filterWords(searchTerm)
+    if (searchTerm) {
+      viwedWordNumber.innerHTML = 'display ' + this.filteredWords.length + ' out of ' + this.words.length + ' words'
+    } else {
+      viwedWordNumber.innerHTML = '';
+    }
   }
 
   changeSelectedSort(sort) {
