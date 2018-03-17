@@ -14,6 +14,10 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
   word: any;
+  words = [];
+  wordsNames = [];
+  autoCompleteResult: any = [];
+  wordscopy = [];
   controlName = false;
   formSubmitted = false;
   addMoreDetails = false;
@@ -48,6 +52,11 @@ export class AddWordComponent implements OnInit {
         } else {
           this.addMoreDetails = false;
         }
+      });
+
+    this.ngRedux.select('filteredWords')
+      .subscribe(res => {
+        this.words = (<any>Object).values(res);
       });
     // Initialize our form
     this.addWordForm = this.form.group({
@@ -105,4 +114,24 @@ export class AddWordComponent implements OnInit {
     }
   }
 
+  matchWord(searchTerm) {
+    for (let wordsName = 0; wordsName < this.words.length; wordsName++) {
+      this.wordscopy.push(this.words[wordsName].word);
+    }
+    return this.wordscopy.filter(function (word) {
+      if (word.toLowerCase().match(searchTerm.toLowerCase())) {
+        return word;
+      }
+    });
+  }
+  search(searchTerm) {
+    if (searchTerm) {
+      this.autoCompleteResult = this.matchWord(searchTerm);
+    } else {
+      for (let wordsName = 0; wordsName < this.words.length; wordsName++) {
+        this.wordscopy.pop();
+        this.autoCompleteResult.pop();
+      }
+    }
+  }
 }
