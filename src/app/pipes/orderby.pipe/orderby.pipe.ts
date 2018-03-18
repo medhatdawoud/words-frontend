@@ -16,7 +16,11 @@ export class OrderByPipe implements PipeTransform {
     if (myArgs[1] !== 'ASC' && myArgs[1] !== 'DESC') {
       return array;
     }
-    console.log(myArgs);
-    return _.orderBy(array, (item: any) => item[myArgs[0]], myArgs[1].toLowerCase());
+
+    return _.orderBy(
+      array,
+      (item: any) => item[myArgs[0]],
+      myArgs[1].toLowerCase()
+    );
   }
 }

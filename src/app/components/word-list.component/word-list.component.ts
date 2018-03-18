@@ -7,7 +7,7 @@ import { OrderByPipe } from '../../pipes';
 
 @Component({
   selector: 'bw-word-list',
-  templateUrl: './word-list.component.html',
+  templateUrl: './word-list.component.html'
 })
 export class WordListComponent implements OnInit {
   words = [];
@@ -16,20 +16,17 @@ export class WordListComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private wordActions: WordActions,
-    private _wordService: WordService,
-  ) {
-  }
+    private _wordService: WordService
+  ) {}
 
   ngOnInit() {
     this.wordActions.getAllWords();
-    this.ngRedux.select('filteredWords')
-      .subscribe(res => {
-        this.words = (<any>Object).values(res);
-      });
-    this.ngRedux.select('sort')
-      .subscribe(res => {
-        this.sort = Object.assign({}, this.sort, res);
-      });
+    this.ngRedux.select('filteredWords').subscribe(res => {
+      this.words = (<any>Object).values(res);
+    });
+    this.ngRedux.select('sort').subscribe(res => {
+      this.sort = Object.assign({}, this.sort, res);
+    });
   }
 
   editWord(word) {
@@ -75,8 +72,9 @@ export class WordListComponent implements OnInit {
     if (w.images.length > 0) {
       wordImagesModal.innerHTML = 'Images : ';
       for (const img of w.images) {
-        wordImagesModal.innerHTML += ' <img src="' + img + '" width="100px" height="100px"/> ';
-        console.log(img);
+        wordImagesModal.innerHTML +=
+          ' <img src="' + img + '" width="100px" height="100px"/> ';
+        // console.log(img);
       }
     } else {
       wordImagesModal.innerHTML = '';
@@ -99,6 +97,5 @@ export class WordListComponent implements OnInit {
     } else {
       wordTagsModal.innerHTML = '';
     }
-
   }
 }
