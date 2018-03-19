@@ -2,7 +2,7 @@ import { Word } from './IWord';
 import { IAppState } from './IAppState';
 import types from './constants';
 
-const initialState: IAppState = {
+export const initialState: IAppState = {
   currentWord: {
     id: '',
     lang: '',

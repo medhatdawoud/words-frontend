@@ -1,59 +1,69 @@
+.collapsable-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: $bw-grey-01;
+    width: 500px;
+    box-shadow: 0 1px 10px $bw-grey-02;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    &.hide {
+        right: -500px;
+    }
+    &.show {
+        right: 0px;
+    }
+    .close {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        color: $bw-grey-03;
+        font-size: 40px;
+    }
+}
+
 .add-word-component {
-    margin-top      : 15px;
-    margin-bottom   : 15px;
-    position        : relative;
-
-    &:before {
-        content     : ' ';
-        border-left : 1px solid $bw-grey-01;
-        position    : absolute;
-        left        : -20px;
-        top         : 25px;
-        bottom      : 25px;
-        height      : calc(100% - 50px);
-    }
-
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0 30px;
+    position: relative;
     h1 {
-        padding     : 0 0 20px;
+        padding: 0 0 20px;
     }
-
     .dropdown {
         .btn-lang {
             background: $bw-grey-02;
         }
         .dropdown-languages {
-            min-width   : 7.8rem;
-
+            min-width: 7.8rem;
             li {
                 .lang {
-                    padding     : 5px 10px;
-                    font-family : arial;
-                    font-size   : 14px;
-                    line-height : 14px;
-                    display     : block;
-
+                    padding: 5px 10px;
+                    font-family: arial;
+                    font-size: 14px;
+                    line-height: 14px;
+                    display: block;
                     &:hover {
-                        background  : $bw-grey-01;
+                        background: $bw-grey-01;
                     }
                 }
-
                 &.active {
                     .lang {
-                        background  : $bw-grey-01;
+                        background: $bw-grey-01;
                     }
                 }
             }
         }
     }
-
     .lang-en_US:before {
         content: "🇺🇸 ";
     }
-
     .lang-ar_EG:before {
         content: "🇪🇬 ";
     }
-
     .lang-nl_NL:before {
         content: "🇳🇱 ";
     }

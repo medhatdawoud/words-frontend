@@ -3,6 +3,7 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from './IAppState';
 import { WordService } from '../services';
 import types from './constants';
+import { initialState } from './reducer';
 
 @Injectable()
 export class WordActions {
@@ -11,7 +12,7 @@ export class WordActions {
     private wordService: WordService
   ) {}
 
-  changeCurrentWord(word) {
+  changeCurrentWord(word = initialState.currentWord) {
     this.ngRedux.dispatch({
       type: types.CHANGE_CURRENT_WORD_SUCCEED,
       payload: word

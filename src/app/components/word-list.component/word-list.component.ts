@@ -31,6 +31,16 @@ export class WordListComponent implements OnInit {
 
   editWord(word) {
     this.wordActions.getWordById(word.id);
+    this.openAddWord();
+  }
+
+  openAddWord() {
+    const collapsableContainer = document.querySelector(
+      '.collapsable-container'
+    );
+    if (collapsableContainer.className.indexOf(' show') === -1) {
+      collapsableContainer.className += ' show';
+    }
   }
 
   wordDetialsModal(w) {

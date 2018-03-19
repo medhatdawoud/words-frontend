@@ -9,7 +9,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'bw-add-word',
-  templateUrl: './add-word.component.html',
+  templateUrl: './add-word.component.html'
 })
 export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
@@ -22,55 +22,68 @@ export class AddWordComponent implements OnInit {
   formSubmitted = false;
   addMoreDetails = false;
 
-  languages = [{
-    name: 'Arabic',
-    code: 'ar_EG'
-  }, {
-    name: 'English',
-    code: 'en_US'
-  }, {
-    name: 'Dutch',
-    code: 'nl_NL'
-  }];
+  languages = [
+    {
+      name: 'Arabic',
+      code: 'ar_EG'
+    },
+    {
+      name: 'English',
+      code: 'en_US'
+    },
+    {
+      name: 'Dutch',
+      code: 'nl_NL'
+    }
+  ];
 
   selectedLang = this.languages[1];
 
-  constructor(private _wordService: WordService,
+  constructor(
+    private _wordService: WordService,
     private ngRedux: NgRedux<IAppState>,
     private validationService: ValidationService,
     private wordActions: WordActions,
-    private form: FormBuilder) {
-  }
+    private form: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.ngRedux.select('currentWord')
-      .subscribe(data => {
-        this.word = Object.assign({}, data);
+    this.ngRedux.select('currentWord').subscribe(data => {
+      this.word = Object.assign({}, data);
 
-        if (this.word.synonym.length || this.word.images.length || this.word.examples.length || this.word.tags.length) {
-          this.addMoreDetails = true;
-        } else {
-          this.addMoreDetails = false;
-        }
-      });
-
-    this.ngRedux.select('filteredWords')
-      .subscribe(res => {
-        this.words = (<any>Object).values(res);
-      });
-    // Initialize our form
-    this.addWordForm = this.form.group({
-      'word': ['', [Validators.required, this.validationService.wordValidator]],
-      'pronounce': ['', [Validators.required, this.validationService.pronounceValidator]],
-      'description': ['', [Validators.required, Validators.maxLength(300)]],
-      'multiControl': this.form.group({
-        'synonym': ['', [this.validationService.synonymValidator, Validators.maxLength(20)]],
-        'images': ['', [this.validationService.imageValidator]],
-        'examples': ['', [Validators.maxLength(100)]],
-        'tags': ['', [this.validationService.tagsValidator]],
-      })
+      if (
+        this.word.synonym.length ||
+        this.word.images.length ||
+        this.word.examples.length ||
+        this.word.tags.length
+      ) {
+        this.addMoreDetails = true;
+      } else {
+        this.addMoreDetails = false;
+      }
     });
 
+    this.ngRedux.select('filteredWords').subscribe(res => {
+      this.words = (<any>Object).values(res);
+    });
+    // Initialize our form
+    this.addWordForm = this.form.group({
+      word: ['', [Validators.required, this.validationService.wordValidator]],
+      pronounce: [
+        '',
+        [Validators.required, this.validationService.pronounceValidator]
+      ],
+      description: ['', [Validators.required, Validators.maxLength(300)]],
+      multiControl: this.form.group({
+        synonym: [
+          '',
+          [this.validationService.synonymValidator, Validators.maxLength(20)]
+        ],
+        images: ['', [this.validationService.imageValidator]],
+        examples: ['', [Validators.maxLength(100)]],
+        tags: ['', [this.validationService.tagsValidator]]
+      })
+    });
   }
 
   saveWord() {
@@ -82,6 +95,7 @@ export class AddWordComponent implements OnInit {
       }
       this.addMoreDetails = false;
       this.addWordForm.markAsPristine();
+      this.closeAddWord();
     } else {
       for (const key in this.addWordForm.controls) {
         if (this.addWordForm.controls[key]) {
@@ -97,6 +111,7 @@ export class AddWordComponent implements OnInit {
     this.wordActions.deleteWord(this.word.id);
     this.formSubmitted = false;
     this.addMoreDetails = false;
+    this.closeAddWord();
   }
 
   changeSelectedLanguage(lang) {
@@ -118,12 +133,13 @@ export class AddWordComponent implements OnInit {
     for (let wordsName = 0; wordsName < this.words.length; wordsName++) {
       this.wordscopy.push(this.words[wordsName].word);
     }
-    return this.wordscopy.filter(function (word) {
+    return this.wordscopy.filter(function(word) {
       if (word.toLowerCase().match(searchTerm.toLowerCase())) {
         return word;
       }
     });
   }
+
   search(searchTerm) {
     if (searchTerm) {
       this.autoCompleteResult = this.matchWord(searchTerm);
@@ -133,5 +149,19 @@ export class AddWordComponent implements OnInit {
         this.autoCompleteResult.pop();
       }
     }
+  }
+
+  closeAddWord() {
+    const colapsableContainer = document.querySelector(
+      '.collapsable-container'
+    );
+    colapsableContainer.className = colapsableContainer.className.substr(
+      0,
+      colapsableContainer.className.indexOf(' show')
+    );
+    this.addMoreDetails = false;
+    this.word = {};
+    this.addWordForm.markAsPristine();
+    this.wordActions.changeCurrentWord(); // reset the form after collapsing it
   }
 }
