@@ -1,15 +1,15 @@
 .words-list-component {
     &.tile-view {
-        margin: 20px 5px;
+        margin: 20px 0;
         display: grid;
-        grid-template-columns: repeat( 4, 0.25fr );
+        grid-template-columns: repeat( auto-fit , minmax(150px, 1fr) );
         .one-word {
-            width: 150px;
             height: 150px;
-            margin: 2px 5px;
+            margin: 5px 5px;
             display: inline-block;
             position: relative;
             border: 1px solid $bw-grey-01;
+
             .images {
                 position: absolute;
                 top: 0;
