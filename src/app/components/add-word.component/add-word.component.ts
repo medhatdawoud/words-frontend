@@ -75,7 +75,7 @@ export class AddWordComponent implements OnInit {
 
   saveWord() {
     if (this.addWordForm.valid) {
-      if (this.word._id) {
+      if (this.word.id) {
         this.wordActions.updateWord(this.word);
       } else {
         this.wordActions.addWord(this.word);
@@ -94,7 +94,7 @@ export class AddWordComponent implements OnInit {
   }
 
   deleteWord() {
-    this.wordActions.deleteWord(this.word._id);
+    this.wordActions.deleteWord(this.word.id);
     this.formSubmitted = false;
     this.addMoreDetails = false;
   }

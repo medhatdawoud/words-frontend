@@ -1,5 +1,5 @@
 export interface Word {
-    _id: string,
+    id: string,
     lang: string,
     word: string,
     synonym: Array<string>,
@@ -10,5 +10,7 @@ export interface Word {
     tags: Array<string>,
     videos: Array<string>,
     examples: Array<string>,
-    images: Array<string>
+    images: Array<string>,
+    addedAt: string,
+    updatedAt: string,
 }

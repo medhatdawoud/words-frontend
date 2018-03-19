@@ -65,7 +65,7 @@
       <label for="">Videos</label>
     </div>-->
     <div class="form-group text-right">
-      <button *ngIf="word._id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word._id)">
+      <button *ngIf="word.id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word.id)">
         <i class="fa fa-times"></i> Delete</button>
       <button class="btn btn-lg btn-primary" (click)="saveWord()">
         <i class="fa fa-check"></i> Save word</button>

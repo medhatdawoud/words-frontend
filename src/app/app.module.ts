@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule } from 'apollo-angular';
+import { HttpLinkModule } from 'apollo-angular-link-http';
+
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, store, WordActions } from './store';
 
@@ -35,6 +39,9 @@ import { OrderByPipe } from './pipes';
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
+    ApolloModule,
+    HttpLinkModule,
     FormsModule,
     NgReduxModule,
     ReactiveFormsModule,

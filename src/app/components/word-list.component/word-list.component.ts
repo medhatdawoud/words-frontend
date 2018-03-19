@@ -16,7 +16,7 @@ export class WordListComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private wordActions: WordActions,
-    private _wordService: WordService
+    private wordService: WordService
   ) {}
 
   ngOnInit() {
@@ -30,72 +30,76 @@ export class WordListComponent implements OnInit {
   }
 
   editWord(word) {
-    this.wordActions.changeCurrentWord(word);
+    this.wordActions.getWordById(word.id);
   }
 
   wordDetialsModal(w) {
-    const wordNameModal = document.getElementById('wordName');
-    const wordSynonymModal = document.getElementById('wordSynonym');
-    const wordPronounceModal = document.getElementById('wordPronounce');
-    const wordDescriptionModal = document.getElementById('wordDescription');
-    const wordImagesModal = document.getElementById('wordImages');
-    const wordExamplesModal = document.getElementById('wordExamples');
-    const wordTagsModal = document.getElementById('wordTags');
+    this.wordService.getWordById(w.id).subscribe(res => {
+      const word = (<any>res).data.word;
 
-    if (w.word !== '') {
-      wordNameModal.innerHTML = 'Word :' + w.word;
-    } else {
-      wordNameModal.innerHTML = '';
-    }
+      const wordNameModal = document.getElementById('wordName');
+      const wordSynonymModal = document.getElementById('wordSynonym');
+      const wordPronounceModal = document.getElementById('wordPronounce');
+      const wordDescriptionModal = document.getElementById('wordDescription');
+      const wordImagesModal = document.getElementById('wordImages');
+      const wordExamplesModal = document.getElementById('wordExamples');
+      const wordTagsModal = document.getElementById('wordTags');
 
-    if (w.pronounce !== '') {
-      wordPronounceModal.innerHTML = 'Pronounce :' + w.pronounce;
-    } else {
-      wordPronounceModal.innerHTML = '';
-    }
-
-    if (w.description !== '') {
-      wordDescriptionModal.innerHTML = 'Description :' + w.description;
-    } else {
-      wordDescriptionModal.innerHTML = '';
-    }
-
-    if (w.synonym.length > 0) {
-      wordSynonymModal.innerHTML = 'Synonym : ';
-      for (const syn of w.synonym) {
-        wordSynonymModal.innerHTML += syn;
+      if (word.word !== '') {
+        wordNameModal.innerHTML = 'Word :' + word.word;
+      } else {
+        wordNameModal.innerHTML = '';
       }
-    } else {
-      wordSynonymModal.innerHTML = '';
-    }
 
-    if (w.images.length > 0) {
-      wordImagesModal.innerHTML = 'Images : ';
-      for (const img of w.images) {
-        wordImagesModal.innerHTML +=
-          ' <img src="' + img + '" width="100px" height="100px"/> ';
-        // console.log(img);
+      if (word.pronounce !== '') {
+        wordPronounceModal.innerHTML = 'Pronounce :' + word.pronounce;
+      } else {
+        wordPronounceModal.innerHTML = '';
       }
-    } else {
-      wordImagesModal.innerHTML = '';
-    }
 
-    if (w.examples.length > 0) {
-      wordExamplesModal.innerHTML = 'Examples : ';
-      for (const exam of w.examples) {
-        wordExamplesModal.innerHTML += exam;
+      if (word.description !== '') {
+        wordDescriptionModal.innerHTML = 'Description :' + word.description;
+      } else {
+        wordDescriptionModal.innerHTML = '';
       }
-    } else {
-      wordExamplesModal.innerHTML = '';
-    }
 
-    if (w.tags.length > 0) {
-      wordTagsModal.innerHTML = 'Tags : ';
-      for (const tag of w.tags) {
-        wordTagsModal.innerHTML += tag;
+      if (word.synonym.length > 0) {
+        wordSynonymModal.innerHTML = 'Synonym : ';
+        for (const syn of word.synonym) {
+          wordSynonymModal.innerHTML += syn;
+        }
+      } else {
+        wordSynonymModal.innerHTML = '';
       }
-    } else {
-      wordTagsModal.innerHTML = '';
-    }
+
+      if (word.images.length > 0) {
+        wordImagesModal.innerHTML = 'Images : ';
+        for (const img of word.images) {
+          wordImagesModal.innerHTML +=
+            ' <img src="' + img + '" width="100px" height="100px"/> ';
+          // console.log(img);
+        }
+      } else {
+        wordImagesModal.innerHTML = '';
+      }
+
+      if (word.examples.length > 0) {
+        wordExamplesModal.innerHTML = 'Examples : ';
+        for (const exam of word.examples) {
+          wordExamplesModal.innerHTML += exam;
+        }
+      } else {
+        wordExamplesModal.innerHTML = '';
+      }
+
+      if (word.tags.length > 0) {
+        wordTagsModal.innerHTML = 'Tags : ';
+        for (const tag of word.tags) {
+          wordTagsModal.innerHTML += tag;
+        }
+      } else {
+        wordTagsModal.innerHTML = '';
+      }
+    });
   }
 }

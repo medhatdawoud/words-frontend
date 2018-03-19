@@ -1,83 +1,127 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { Word } from '../store';
 
 @Injectable()
 export class WordService {
-  apiUrl = 'https://beeswords.herokuapp.com/';
-  // apiUrl = 'http://localhost:8080';
-
-  constructor(private http: Http) { }
+  constructor(private apollo: Apollo) {}
 
   getAllWords() {
-    return this.http.get(this.apiUrl + 'api/word')
-      .map(this.extractRequiredData)
-      .catch(this.handleError);
+    return this.apollo.query({
+      query: gql`
+        {
+          words {
+            id
+            word
+            pronounce
+            addedAt
+          }
+        }
+      `
+    });
+  }
+
+  getWordById(wordId: string) {
+    const getWordByIdRequest = gql`
+      query getWordById($id: ID!) {
+        word(id: $id) {
+          id
+          word
+          pronounce
+          description
+          synonym
+          tags
+          lang
+          type
+          soundUrl
+          images
+          examples
+          videos
+          addedAt
+          updatedAt
+        }
+      }
+    `;
+    return this.apollo.query({
+      query: getWordByIdRequest,
+      variables: {
+        id: wordId
+      }
+    });
   }
 
   addNewWord(oneWord) {
-    return this.http.post(this.apiUrl + 'api/word', {
-      lang: oneWord.lang,
-      word: oneWord.word,
-      type: oneWord.type,
-      synonym: oneWord.synonym,
-      pronounce: oneWord.pronounce,
-      description: oneWord.description,
-      soundUrl: oneWord.soundUrl,
-      tags: oneWord.tags,
-      videos: oneWord.videos,
-      examples: oneWord.examples,
-      images: oneWord.images
-    })
-      .map(this.extractRequiredData)
-      .catch(this.handleError);
+    const addWordRequest = gql`
+      mutation addNewWord($word: WordInput) {
+        addNewWord(word: $word) {
+          id
+        }
+      }
+    `;
+    return this.apollo.mutate({
+      mutation: addWordRequest,
+      variables: {
+        word: {
+          lang: oneWord.lang,
+          word: oneWord.word,
+          pronounce: oneWord.pronounce,
+          description: oneWord.description,
+          synonym: oneWord.synonym || [],
+          tags: oneWord.tags || [],
+          type: oneWord.type,
+          soundUrl: oneWord.soundUrl,
+          images: oneWord.images || [],
+          examples: oneWord.examples || [],
+          videos: oneWord.videos || []
+        }
+      }
+    });
   }
 
-  updateWord(word) {
-    return this.http.put(this.apiUrl + 'api/word', {
-      _id: word._id,
-      lang: word.lang,
-      word: word.word,
-      type: word.type,
-      synonym: word.synonym,
-      pronounce: word.pronounce,
-      description: word.description,
-      soundUrl: word.soundUrl,
-      tags: word.tags,
-      videos: word.videos,
-      examples: word.examples,
-      images: word.images
-    })
-      .map(this.extractRequiredData)
-      .catch(this.handleError);
+  updateWord(updatingWord: Word) {
+    const updateWordRequest = gql`
+      mutation updateWord($id: ID, $word: WordInput) {
+        updateWord(id: $id, word: $word) {
+          id
+        }
+      }
+    `;
+    return this.apollo.mutate({
+      mutation: updateWordRequest,
+      variables: {
+        id: updatingWord.id,
+        word: {
+          lang: updatingWord.lang,
+          word: updatingWord.word,
+          pronounce: updatingWord.pronounce,
+          description: updatingWord.description,
+          synonym: updatingWord.synonym || [],
+          tags: updatingWord.tags || [],
+          type: updatingWord.type,
+          soundUrl: updatingWord.soundUrl,
+          images: updatingWord.images || [],
+          examples: updatingWord.examples || [],
+          videos: updatingWord.videos || []
+        }
+      }
+    });
   }
 
-  deleteWord(id) {
-    return this.http.delete(this.apiUrl + 'api/word', new RequestOptions({
-      body: { id: id }
-    }))
-      .map(this.extractRequiredData)
-      .catch(this.handleError);
-  }
-
-  private extractRequiredData(res: Response) {
-    const body = res.json();
-    return body || {};
-  }
-
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+  deleteWord(wordId) {
+    const deleteWordRequest = gql`
+      mutation deleteWord($id: ID) {
+        deleteWord(id: $id) {
+          id
+        }
+      }
+    `;
+    return this.apollo.mutate({
+      mutation: deleteWordRequest,
+      variables: {
+        id: wordId
+      }
+    });
   }
 }
