@@ -16,6 +16,8 @@ export class WordService {
             id
             word
             pronounce
+            tags
+            synonym
             addedAt
           }
         }
