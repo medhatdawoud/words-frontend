@@ -53,19 +53,8 @@ export class FilterBarComponent implements OnInit {
     this.selectSorting = this.sortWordsOptions[1];
   }
 
-  search(searchTerm, sortType) {
-    const viwedWordNumber = document.getElementById('viwedWordNumber');
+  search(searchTerm) {
     this.wordActions.filterWords(searchTerm);
-    if (searchTerm) {
-      viwedWordNumber.innerHTML =
-        'display ' +
-        this.filteredWords.length +
-        ' out of ' +
-        this.words.length +
-        ' words';
-    } else {
-      viwedWordNumber.innerHTML = '';
-    }
   }
 
   changeSelectedSort(sort) {

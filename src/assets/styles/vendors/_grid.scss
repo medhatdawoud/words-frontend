@@ -1,0 +1,9 @@
+.col {
+    .fit {
+        flex: 0;
+    }
+
+    & + & {
+        padding-left: 0;
+    }
+}

@@ -3,9 +3,8 @@
     <div class="filter-bar">
       <input type="search" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" (keyup)="search(searchTerm)" placeholder="Search by word, synonyms, or tags">
     </div>
-    <div id="viwedWordNumber"></div>
   </div>
-  <div class="col">
+  <div class="col fit">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
@@ -19,7 +18,8 @@
       </div>
     </div>
   </div>
-  <div class="col">
+  <div class="col fit">
     <button class="btn btn-primary" (click)="openAddWord()">Add new word</button>
   </div>
+  <div class="numberViewedWords" *ngIf="filteredWords.length < words.length">Display {{filteredWords.length}} out of {{words.length}} words.</div>
 </div>

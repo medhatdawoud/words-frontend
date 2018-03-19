@@ -10,6 +10,8 @@
     height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: $bw-z-index-1;
+
     &.hide {
         right: -500px;
     }

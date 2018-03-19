@@ -1,4 +1,8 @@
 .filter-word-component{
+    background-color: $bw-grey-02;
+    padding: 30px 0;
+    position: relative;
+
     .dropdown {
         .dropdown-order {
             min-width   : 7.8rem;
@@ -10,5 +14,14 @@
                 }
             }
         }
+    }
+
+    .numberViewedWords {
+        position: absolute;
+        bottom: 7px;
+        left: 15px;
+        color: $bw-grey-03;
+        font-size: 13px;
+        font-style: italic;
     }
 }
