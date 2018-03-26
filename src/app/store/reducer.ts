@@ -3,6 +3,7 @@ import { IAppState } from './IAppState';
 import types from './constants';
 
 export const initialState: IAppState = {
+  language: 'en',
   currentWord: {
     id: '',
     lang: '',

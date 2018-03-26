@@ -10,6 +10,8 @@ import { HttpLinkModule } from 'apollo-angular-link-http';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, store, WordActions } from './store';
 
+import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translate';
+
 import { AppComponent } from './app.component';
 import {
   AddWordComponent,
@@ -34,7 +36,8 @@ import { OrderByPipe } from './pipes';
     ErrorMessageComponent,
     LimitLengthDirective,
     FilterBarComponent,
-    OrderByPipe
+    OrderByPipe,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ import { OrderByPipe } from './pipes';
   providers: [
     WordService,
     WordActions,
-    ValidationService
+    ValidationService,
+    TRANSLATION_PROVIDERS,
+    TranslateService
   ],
   bootstrap: [AppComponent],
 

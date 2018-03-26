@@ -2,7 +2,7 @@
   <span class="close" (click)="closeAddWord()">&times;</span>
   <div class="add-word-component">
     <h1>
-      New Word
+      {{ 'add_word.form.new_word' | translate }}
       <div class="dropdown pull-right">
         <button class="btn btn-lang btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="true">
@@ -26,13 +26,13 @@
             {{wordAutocompelet}}
           </li>
         </ul>
-        <label for="">Word</label>
+        <label for="">{{ 'add_word.form.word' | translate }}</label>
         <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.word"></bw-error-message>
       </div>
       <div class="form-group">
         <input type="text" name="pronounce" autocomplete="off" formControlName="pronounce" class="form-control" [(ngModel)]="word.pronounce"
           required/>
-        <label for="">Pronounce</label>
+        <label for="">{{ 'add_word.form.pronounce' | translate }}</label>
         <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.pronounce"></bw-error-message>
       </div>
       <div class="form-group">
@@ -42,17 +42,17 @@
           </div>
           <textarea name="description" appLimitLength [maxLength]="30" [countDown]="30" id="resizableTextarea" formControlName="description"
             class="form-control textarea" [(ngModel)]="word.description" required rows="3"></textarea>
-          <label for="">Description</label>
+          <label for="">{{ 'add_word.form.description' | translate }}</label>
           <div class='textarea-countdown' id='textarea-countdown'>30</div>
         </div>
         <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.description"></bw-error-message>
       </div>
-      <button (click)="addMoreDetails = true" *ngIf="!addMoreDetails" class="btn btn-block btn-link">Click to add more word details ... </button>
+      <button (click)="addMoreDetails = true" *ngIf="!addMoreDetails" class="btn btn-block btn-link">{{ 'add_word.form.expand_form.message' | translate }} </button>
       <div class="add-more-details" *ngIf="addMoreDetails">
-        <bw-multi [(items)]="word.synonym" formGroupName="multiControl" label="Synonym" type="synonym" maxLength="4"></bw-multi>
-        <bw-multi [(items)]="word.images" formGroupName="multiControl" label="Image url" type="images" maxLength="4" [submitted]="formSubmitted"></bw-multi>
-        <bw-multi [(items)]="word.examples" formGroupName="multiControl" label="Example" type="examples" maxLength="5" [submitted]="formSubmitted"></bw-multi>
-        <bw-multi [(items)]="word.tags" formGroupName="multiControl" label="Tag" type="tags" maxLength="3" [submitted]="formSubmitted"></bw-multi>
+        <bw-multi [(items)]="word.synonym" formGroupName="multiControl" label="add_word.form.synonym" type="synonym" maxLength="4"></bw-multi>
+        <bw-multi [(items)]="word.images" formGroupName="multiControl" label="add_word.form.images" type="images" maxLength="4" [submitted]="formSubmitted"></bw-multi>
+        <bw-multi [(items)]="word.examples" formGroupName="multiControl" label="add_word.form.examples" type="examples" maxLength="5" [submitted]="formSubmitted"></bw-multi>
+        <bw-multi [(items)]="word.tags" formGroupName="multiControl" label="add_word.form.tags" type="tags" maxLength="3" [submitted]="formSubmitted"></bw-multi>
       </div>
       <!--<div class="form-group">
       <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
@@ -68,9 +68,9 @@
     </div>-->
       <div class="form-group text-right">
         <button *ngIf="word.id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word.id)">
-          <i class="fa fa-times"></i> Delete</button>
+          <i class="fa fa-times"></i> {{'add_word.form.delete_button' | translate}}</button>
         <button class="btn btn-lg btn-primary" (click)="saveWord()">
-          <i class="fa fa-check"></i> Save word</button>
+          <i class="fa fa-check"></i> {{'add_word.form.save_button' | translate}}</button>
       </div>
     </form>
   </div>
