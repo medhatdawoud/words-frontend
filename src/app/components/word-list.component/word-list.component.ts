@@ -56,25 +56,24 @@ export class WordListComponent implements OnInit {
       const wordTagsModal = document.getElementById('wordTags');
 
       if (word.word !== '') {
-        wordNameModal.innerHTML = 'Word :' + word.word;
+        wordNameModal.innerHTML +=  word.word;
       } else {
         wordNameModal.innerHTML = '';
       }
 
       if (word.pronounce !== '') {
-        wordPronounceModal.innerHTML = 'Pronounce :' + word.pronounce;
+        wordPronounceModal.innerHTML += word.pronounce;
       } else {
         wordPronounceModal.innerHTML = '';
       }
 
       if (word.description !== '') {
-        wordDescriptionModal.innerHTML = 'Description :' + word.description;
+        wordDescriptionModal.innerHTML += word.description;
       } else {
         wordDescriptionModal.innerHTML = '';
       }
 
       if (word.synonym.length > 0) {
-        wordSynonymModal.innerHTML = 'Synonym : ';
         for (const syn of word.synonym) {
           wordSynonymModal.innerHTML += syn;
         }
@@ -83,7 +82,6 @@ export class WordListComponent implements OnInit {
       }
 
       if (word.images.length > 0) {
-        wordImagesModal.innerHTML = 'Images : ';
         for (const img of word.images) {
           wordImagesModal.innerHTML +=
             ' <img src="' + img + '" width="100px" height="100px"/> ';
@@ -94,7 +92,6 @@ export class WordListComponent implements OnInit {
       }
 
       if (word.examples.length > 0) {
-        wordExamplesModal.innerHTML = 'Examples : ';
         for (const exam of word.examples) {
           wordExamplesModal.innerHTML += exam;
         }
@@ -103,7 +100,6 @@ export class WordListComponent implements OnInit {
       }
 
       if (word.tags.length > 0) {
-        wordTagsModal.innerHTML = 'Tags : ';
         for (const tag of word.tags) {
           wordTagsModal.innerHTML += tag;
         }

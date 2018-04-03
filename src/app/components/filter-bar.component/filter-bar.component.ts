@@ -9,22 +9,22 @@ import { NgRedux } from '@angular-redux/store';
 export class FilterBarComponent implements OnInit {
   sortWordsOptions = [
     {
-      label: 'Newest first',
+      label: 'filter_word.form.sort_by_newest',
       field: 'addedAt',
       direction: 'DESC'
     },
     {
-      label: 'Oldest first',
+      label: 'filter_word.form.sort_by_oldest',
       field: 'addedAt',
       direction: 'ASC'
     },
     {
-      label: 'Words A->Z',
+      label: 'filter_word.form.sort_by_word_az',
       field: 'word',
       direction: 'ASC'
     },
     {
-      label: 'Words Z->A',
+      label: 'filter_word.form.sort_by_word_za',
       field: 'word',
       direction: 'DESC'
     }

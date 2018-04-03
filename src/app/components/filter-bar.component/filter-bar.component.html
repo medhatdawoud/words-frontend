@@ -1,25 +1,25 @@
 <div class="row filter-word-component">
   <div class="col">
     <div class="filter-bar">
-      <input type="search" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" (keyup)="search(searchTerm)" placeholder="Search by word, synonyms, or tags">
+      <input type="search" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" (keyup)="search(searchTerm)" placeholder="{{'filter_word.form.search_by_word_input' | translate}}">
     </div>
   </div>
   <div class="col fit">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
-        <span *ngIf="selectSorting"></span> {{ selectSorting.label }}
+        <span *ngIf="selectSorting"></span> {{ selectSorting.label | translate }}
         <span class="caret"></span>
       </button>
       <div class="dropdown-menu dropdown-order" aria-labelledby="dropdownMenu1">
         <div *ngFor="let sort of sortWordsOptions" [ngClass]="{'active' : sort == selectSorting}">
-          <a href="javascript:void(0)" class=" dropdown-item order" (click)="changeSelectedSort(sort)">{{sort.label}}</a>
+          <a href="javascript:void(0)" class=" dropdown-item order" (click)="changeSelectedSort(sort)">{{sort.label | translate}}</a>
         </div>
       </div>
     </div>
   </div>
   <div class="col fit">
-    <button class="btn btn-primary" (click)="openAddWord()">Add new word</button>
+    <button class="btn btn-primary" (click)="openAddWord()">{{'add_word.form.add_new_word_button' | translate }}</button>
   </div>
   <div class="numberViewedWords" *ngIf="filteredWords.length < words.length">
     <span *ngIf="filteredWords.length > 0">Display {{filteredWords.length}} out of {{words.length}} words.</span>

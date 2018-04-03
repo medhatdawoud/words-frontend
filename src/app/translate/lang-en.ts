@@ -13,5 +13,18 @@ export const LANG_EN_TRANS = {
     'add_word.form.tags': 'Tags',
     'add_word.form.expand_form.message': 'Click to add more word details ...',
     'add_word.form.delete_button': 'Delete',
-    'add_word.form.save_button': 'Save word'
+    'add_word.form.save_button': 'Save word',
+    'add_word.form.remove_button': 'remove',
+    'add_word.form.add_button': 'Add',
+    'add_word.form.add_new_word_button': 'Add new word',
+
+    'filter_word.form.search_by_word_input': 'Search by word, synonyms, or tags',
+    'filter_word.form.sort_by_newest': 'Newest First',
+    'filter_word.form.sort_by_oldest': 'Oldest First',
+    'filter_word.form.sort_by_word_az': 'Word ASC',
+    'filter_word.form.sort_by_word_za': 'Word DESC',
+
+    'view_word.modal.heading' : 'View Word Details',
+    'view_word.modal.close_button': 'Close',
+
 };
