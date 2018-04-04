@@ -24,6 +24,9 @@ export const LANG_EN_TRANS = {
     'filter_word.form.sort_by_word_az': 'Word ASC',
     'filter_word.form.sort_by_word_za': 'Word DESC',
 
+    'filter_bar.number_of_viewed_words.some_words': 'Display ${0} out of ${1} words.',
+    'filter_bar.number_of_viewed_words.no_words': 'No words to display for this search.',
+
     'view_word.modal.heading' : 'View Word Details',
     'view_word.modal.close_button': 'Close',
 

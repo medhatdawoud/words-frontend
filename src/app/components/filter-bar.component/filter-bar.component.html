@@ -19,8 +19,7 @@
     </div>
   </div>
   <div class="numberViewedWords" *ngIf="filteredWords.length < words.length">
-    <span *ngIf="filteredWords.length > 0">Display {{filteredWords.length}} out of {{words.length}} words.</span>
-    <span *ngIf="filteredWords.length == 0">No words to display for this search</span>
+    <span *ngIf="filteredWords.length > 0">{{ 'filter_bar.number_of_viewed_words.some_words' | translate:[filteredWords.length, words.length] }}</span>
+    <span *ngIf="filteredWords.length == 0">{{ 'filter_bar.number_of_viewed_words.no_words' | translate }}</span>
   </div>
-
 </div>

@@ -25,6 +25,9 @@ export const LANG_AR_TRANS = {
     'filter_word.form.sort_by_word_az': 'بالكلمات تصاعديا',
     'filter_word.form.sort_by_word_za': 'بالكلمات تنازليا',
 
+    'filter_bar.number_of_viewed_words.some_words': 'اظهار عدد ${0} من اصل ${1} كلمات.',
+    'filter_bar.number_of_viewed_words.no_words': 'لا يوجد كلمات لاظهارها في هذا البحث.',
+
     'view_word.modal.heading' : 'تفاضيل الكلمة',
     'view_word.modal.close_button': 'اغلاق',
 
