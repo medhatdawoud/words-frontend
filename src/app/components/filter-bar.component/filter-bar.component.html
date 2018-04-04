@@ -1,4 +1,4 @@
-<div class="row filter-word-component">
+<div class="row filter-word-component bg-warning bg-light">
   <div class="col">
     <div class="filter-bar">
       <input type="search" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" (keyup)="search(searchTerm)" placeholder="{{'filter_word.form.search_by_word_input' | translate}}">
@@ -6,7 +6,7 @@
   </div>
   <div class="col fit">
     <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         <span *ngIf="selectSorting"></span> {{ selectSorting.label | translate }}
         <span class="caret"></span>

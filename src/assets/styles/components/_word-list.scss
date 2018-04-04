@@ -1,11 +1,9 @@
 .words-list-component {
     &.tile-view {
-        margin: 20px 0;
         display: grid;
         grid-template-columns: repeat( auto-fill , minmax(150px, 1fr) );
         .one-word {
             height: 150px;
-            margin: 5px 5px;
             display: inline-block;
             position: relative;
             border: 1px solid $bw-grey-01;
@@ -43,22 +41,26 @@
             }
             .edit {
                 position: absolute;
-                top: -10px;
-                left: -10px;
+                top: 0;
+                left: 0;
                 font-size: 16px;
                 font-family: $bw-font-second;
-                background: $bw-green;
+                background: $bw-yellow-dark;
                 color: $bw-white;
                 z-index: $bw-z-index-1;
                 padding: 3px 8px;
-                border-radius: 50%;
                 cursor: pointer;
                 display: none;
             }
             &:hover {
                 .word {
                     box-shadow: none;
-                    @include bw-background-with-opacity($bw-green, 0.5); // justify-content : left;
+                    color: $bw-grey-07;
+                    @include bw-background-with-opacity($bw-yellow, 0.5); // justify-content : left;
+
+                    small {
+                        color: $bw-yellow-dark;
+                    }
                 }
                 .edit {
                     display: block;

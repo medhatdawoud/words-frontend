@@ -1,4 +1,4 @@
-<div class="words-list-component tile-view">
+<div class="words-list-component tile-view mb-4">
   <div *ngFor="let w of words | orderBy:{field: sort.field, direction: sort.direction}" class="one-word" data-toggle="modal"
     data-target="#myModal" (click)="wordDetialsModal(w)">
     <div (click)="editWord(w); $event.stopPropagation();" class="edit">
