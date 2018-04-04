@@ -54,7 +54,7 @@
       <input type="text" name="videos" class="form-control" [(ngModel)]="word.videos" required />
       <label for="">Videos</label>
     </div>-->
-      <div class="form-group text-right">
+      <div class="form-group text-right mt-4">
         <button *ngIf="word.id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word.id)">
           <i class="fa fa-times"></i> {{'add_word.form.delete_button' | translate}}</button>
         <button class="btn btn-lg btn-primary" (click)="saveWord()">

@@ -36,6 +36,11 @@
     h1 {
         padding: 0 0 20px;
     }
+    .form-group {
+        label {
+            color: $bw-grey-02;
+        }
+    }
     .dropdown {
         .btn-lang {
             background: $bw-grey-02;
