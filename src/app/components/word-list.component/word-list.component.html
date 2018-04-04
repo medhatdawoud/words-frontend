@@ -2,7 +2,7 @@
   <div *ngFor="let w of words | orderBy:{field: sort.field, direction: sort.direction}" class="one-word" data-toggle="modal"
     data-target="#myModal" (click)="wordDetialsModal(w)">
     <div (click)="editWord(w); $event.stopPropagation();" class="edit">
-      <i class="fa fa-pencil"></i>
+      <i class="fa fa-pencil"></i> <em>Edit</em>
     </div>
     <div class="images" *ngFor="let image of w.images">
       <img [src]="image" alt="" width="100">
