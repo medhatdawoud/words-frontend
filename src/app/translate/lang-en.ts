@@ -27,4 +27,11 @@ export const LANG_EN_TRANS = {
     'view_word.modal.heading' : 'View Word Details',
     'view_word.modal.close_button': 'Close',
 
+    'top_menu.brand': 'Beeswords',
+    'top_menu.link.login_register': 'Login/register',
+    'top_menu.link.about': 'About',
+    'top_menu.language.arabic': 'العربية',
+    'top_menu.language.english': 'English',
+    'top_menu.language.dutch': 'Nederlands',
+
 };

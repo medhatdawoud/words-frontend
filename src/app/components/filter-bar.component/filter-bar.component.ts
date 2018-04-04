@@ -40,10 +40,6 @@ export class FilterBarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    /*this.ngRedux.select('sort')
-      .subscribe(res => {
-        this.selectSorting = <any>res;
-      });*/
     this.ngRedux.select('filteredWords').subscribe(res => {
       this.filteredWords = (<any>Object).values(res);
     });
@@ -60,14 +56,5 @@ export class FilterBarComponent implements OnInit {
   changeSelectedSort(sort) {
     this.selectSorting = sort;
     this.wordActions.sortWords(sort);
-  }
-
-  openAddWord() {
-    const collapsableContainer = document.querySelector(
-      '.collapsable-container'
-    );
-    if (collapsableContainer.className.indexOf(' show') === -1) {
-      collapsableContainer.className += ' show';
-    }
   }
 }

@@ -79,4 +79,11 @@ export class WordActions {
       payload: sortObj
     });
   }
+
+  changeLocaleLanguage(lang) {
+    this.ngRedux.dispatch({
+      type: types.CHANGE_LOCALE_LANGUAGE,
+      payload: lang
+    });
+  }
 }

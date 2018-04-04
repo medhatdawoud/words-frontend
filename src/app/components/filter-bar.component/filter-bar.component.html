@@ -18,9 +18,6 @@
       </div>
     </div>
   </div>
-  <div class="col fit">
-    <button class="btn btn-primary" (click)="openAddWord()">{{'add_word.form.add_new_word_button' | translate }}</button>
-  </div>
   <div class="numberViewedWords" *ngIf="filteredWords.length < words.length">
     <span *ngIf="filteredWords.length > 0">Display {{filteredWords.length}} out of {{words.length}} words.</span>
     <span *ngIf="filteredWords.length == 0">No words to display for this search</span>

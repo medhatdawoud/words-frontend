@@ -27,4 +27,11 @@ export const LANG_AR_TRANS = {
 
     'view_word.modal.heading' : 'تفاضيل الكلمة',
     'view_word.modal.close_button': 'اغلاق',
+
+    'top_menu.brand': 'beeswords',
+    'top_menu.link.login_register': 'تسجيل/دخول',
+    'top_menu.link.about': 'عن الموقع',
+    'top_menu.language.arabic': 'العربية',
+    'top_menu.language.english': 'English',
+    'top_menu.language.dutch': 'Nederlands',
 };

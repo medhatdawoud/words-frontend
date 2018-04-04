@@ -3,18 +3,6 @@
   <div class="add-word-component">
     <h1>
       {{ 'add_word.form.new_word' | translate }}
-      <div class="dropdown pull-right">
-        <button class="btn btn-lang btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="true">
-          <span *ngIf="selectedLang" class="lang-{{selectedLang.code}}"></span> {{ selectedLang.name || 'Language' }}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-languages" aria-labelledby="dropdownMenu1">
-          <li *ngFor="let lang of languages" [ngClass]="{'active' : lang == selectedLang}">
-            <a href="javascript:void(0)" (click)="changeSelectedLanguage(lang)" class="lang lang-{{lang.code}}">{{lang.name}}</a>
-          </li>
-        </ul>
-      </div>
     </h1>
     <form name="formAddWord" action="" #form="ngForm" novalidate [formGroup]="addWordForm">
       <div class="form-group dropdown">

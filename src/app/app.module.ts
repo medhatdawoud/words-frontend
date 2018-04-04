@@ -18,7 +18,8 @@ import {
   WordListComponent,
   MultiComponent,
   ErrorMessageComponent,
-  FilterBarComponent
+  FilterBarComponent,
+  TopMenuComponent
 } from './components';
 import { WordService, ValidationService } from './services';
 import { LimitLengthDirective } from './directives';
@@ -37,7 +38,8 @@ import { OrderByPipe } from './pipes';
     LimitLengthDirective,
     FilterBarComponent,
     OrderByPipe,
-    TranslatePipe
+    TranslatePipe,
+    TopMenuComponent
   ],
   imports: [
     BrowserModule,

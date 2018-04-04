@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { AddWordComponent, WordListComponent } from './components';
+import {
+  AddWordComponent,
+  WordListComponent,
+  TopMenuComponent
+} from './components';
 import { IAppState } from './store';
 
 import { Apollo } from 'apollo-angular';
@@ -19,7 +23,8 @@ export class AppComponent implements OnInit {
     private apollo: Apollo,
     private ngRedux: NgRedux<IAppState>,
     private httpLink: HttpLink,
-    private translate: TranslateService) {
+    private translate: TranslateService
+  ) {
     apollo.create({
       link: httpLink.create({
         uri: 'https://mybeeswords.herokuapp.com/graphql'

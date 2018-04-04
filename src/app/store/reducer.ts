@@ -3,7 +3,7 @@ import { IAppState } from './IAppState';
 import types from './constants';
 
 export const initialState: IAppState = {
-  language: 'en',
+  language: sessionStorage.getItem('language') || 'en',
   currentWord: {
     id: '',
     lang: '',
@@ -96,6 +96,11 @@ export function reducer(state = initialState, action) {
     case types.SORT_WORD_SUCCED: {
       return Object.assign({}, state, {
         sort: action.payload
+      });
+    }
+    case types.CHANGE_LOCALE_LANGUAGE: {
+      return Object.assign({}, state, {
+        language: action.payload
       });
     }
     default:

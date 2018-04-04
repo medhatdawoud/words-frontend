@@ -22,23 +22,6 @@ export class AddWordComponent implements OnInit {
   formSubmitted = false;
   addMoreDetails = false;
 
-  languages = [
-    {
-      name: 'Arabic',
-      code: 'ar_EG'
-    },
-    {
-      name: 'English',
-      code: 'en_US'
-    },
-    {
-      name: 'Dutch',
-      code: 'nl_NL'
-    }
-  ];
-
-  selectedLang = this.languages[1];
-
   constructor(
     private _wordService: WordService,
     private ngRedux: NgRedux<IAppState>,
@@ -112,10 +95,6 @@ export class AddWordComponent implements OnInit {
     this.formSubmitted = false;
     this.addMoreDetails = false;
     this.closeAddWord();
-  }
-
-  changeSelectedLanguage(lang) {
-    this.selectedLang = lang;
   }
 
   autoResize() {

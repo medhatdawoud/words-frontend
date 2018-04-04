@@ -1,0 +1,11 @@
+.top-menu-component {
+    .lang-en_US:before {
+        content: "🇺🇸 ";
+    }
+    .lang-ar_EG:before {
+        content: "🇪🇬 ";
+    }
+    .lang-nl_NL:before {
+        content: "🇳🇱 ";
+    }
+}
