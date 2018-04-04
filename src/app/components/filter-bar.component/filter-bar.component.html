@@ -11,7 +11,7 @@
         <span *ngIf="selectSorting"></span> {{ selectSorting.label | translate }}
         <span class="caret"></span>
       </button>
-      <div class="dropdown-menu dropdown-order" aria-labelledby="dropdownMenu1">
+      <div class="dropdown-menu dropdown-menu-right dropdown-order" aria-labelledby="dropdownMenu1">
         <div *ngFor="let sort of sortWordsOptions" [ngClass]="{'active' : sort == selectSorting}">
           <a href="javascript:void(0)" class=" dropdown-item order" (click)="changeSelectedSort(sort)">{{sort.label | translate}}</a>
         </div>
