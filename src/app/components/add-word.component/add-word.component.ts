@@ -7,6 +7,10 @@ import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/fromEvent';
+
 @Component({
   selector: 'bw-add-word',
   templateUrl: './add-word.component.html'
@@ -15,9 +19,7 @@ export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
   word: any;
   words = [];
-  wordsNames = [];
   autoCompleteResult: any = [];
-  wordscopy = [];
   controlName = false;
   formSubmitted = false;
   addMoreDetails = false;
@@ -67,6 +69,20 @@ export class AddWordComponent implements OnInit {
         tags: ['', [this.validationService.tagsValidator]]
       })
     });
+
+    const autoCompleteSearch = document.querySelector('[formControlName="word"]');
+    Observable.fromEvent(autoCompleteSearch, 'keyup')
+      .do(event => {
+        const e = <any>event;
+        if (e.code === 'Backspace') {
+          this.search('');
+        }
+      })
+      .debounceTime(600)
+      .subscribe(e => {
+        const searchTerm = (<any>e).target.value;
+        this.search(searchTerm);
+      });
   }
 
   saveWord() {
@@ -109,25 +125,29 @@ export class AddWordComponent implements OnInit {
   }
 
   matchWord(searchTerm) {
-    for (let wordsName = 0; wordsName < this.words.length; wordsName++) {
-      this.wordscopy.push(this.words[wordsName].word);
-    }
-    return this.wordscopy.filter(function(word) {
-      if (word.toLowerCase().match(searchTerm.toLowerCase())) {
-        return word;
-      }
-    });
+    this.autoCompleteResult = [];
+
+    // TODO: we need to make it from database because later on we will have a lot of words and we
+    //       are not able to load all of them into the state
+    const matchWords = this.words
+      .filter(w => w.word.toLowerCase().startsWith(searchTerm))
+      .map(w => {
+        return { id: w.id, word: w.word };
+      });
+    return matchWords;
   }
 
   search(searchTerm) {
     if (searchTerm) {
-      this.autoCompleteResult = this.matchWord(searchTerm);
+      this.autoCompleteResult = this.matchWord(searchTerm.toLowerCase());
     } else {
-      for (let wordsName = 0; wordsName < this.words.length; wordsName++) {
-        this.wordscopy.pop();
-        this.autoCompleteResult.pop();
-      }
+      this.autoCompleteResult = [];
     }
+  }
+
+  loadWord(id) {
+    this.autoCompleteResult = [];
+    this.wordActions.getWordById(id);
   }
 
   closeAddWord() {

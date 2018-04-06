@@ -41,6 +41,24 @@
             color: $bw-grey-02;
         }
     }
+
+    .dropdown-autocomplete {
+        top: 57px;
+        width: 100%;
+
+        &.show {
+            display: block;
+        }
+
+        li {
+            padding: 5px 15px;
+
+            &:hover {
+                background: $bw-grey-01;
+            }
+        }
+    }
+
     .dropdown {
         .btn-lang {
             background: $bw-grey-02;
