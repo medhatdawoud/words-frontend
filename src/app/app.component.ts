@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   ) {
     apollo.create({
       link: httpLink.create({
-        uri: 'https://mybeeswords.herokuapp.com/graphql'
+        uri: 'https://beeswords.herokuapp.com/graphql'
       }),
       cache: new InMemoryCache()
     });
