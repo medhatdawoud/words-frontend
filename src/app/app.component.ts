@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
 import {
   AddWordComponent,
   WordListComponent,
@@ -12,6 +11,7 @@ import { HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { TranslateService } from './translate';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'bw-root',
@@ -21,9 +21,9 @@ import { TranslateService } from './translate';
 export class AppComponent implements OnInit {
   constructor(
     private apollo: Apollo,
-    private ngRedux: NgRedux<IAppState>,
+    private store: Store<IAppState>,
     private httpLink: HttpLink,
-    private translate: TranslateService
+    // private translate: TranslateService
   ) {
     apollo.create({
       link: httpLink.create({
@@ -34,16 +34,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ngRedux.select('language').subscribe(lang => {
-      this.selectLang(<any>lang);
+    this.store.pipe(select('words')).subscribe(res => {
+      this.selectLang(<any>res.language);
     });
   }
 
   isCurrentLang(lang: string) {
-    return lang === this.translate.currentLang;
+    // return lang === this.translate.currentLang;
   }
 
   selectLang(lang: string) {
-    this.translate.use(lang);
+    // this.translate.use(lang);
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { MultiComponent } from './../';
 import { WordService, ValidationService } from '../../services';
-import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -10,6 +9,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/fromEvent';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'bw-add-word',
@@ -17,8 +17,40 @@ import 'rxjs/add/observable/fromEvent';
 })
 export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
-  word: any;
-  words = [];
+  word: any = {
+    id: '',
+    lang: '',
+    word: '',
+    synonym: [],
+    type: '',
+    pronounce: '',
+    description: '',
+    soundUrl: '',
+    tags: [],
+    videos: [],
+    examples: [],
+    images: [],
+    addedAt: '',
+    updatedAt: ''
+  };
+  words = [
+    {
+      id: '',
+      lang: '',
+      word: '',
+      synonym: [],
+      type: '',
+      pronounce: '',
+      description: '',
+      soundUrl: '',
+      tags: [],
+      videos: [],
+      examples: [],
+      images: [],
+      addedAt: '',
+      updatedAt: ''
+    }
+  ];
   autoCompleteResult: any = [];
   controlName = false;
   formSubmitted = false;
@@ -26,15 +58,15 @@ export class AddWordComponent implements OnInit {
 
   constructor(
     private _wordService: WordService,
-    private ngRedux: NgRedux<IAppState>,
+    private store: Store<IAppState>,
     private validationService: ValidationService,
     private wordActions: WordActions,
     private form: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.ngRedux.select('currentWord').subscribe(data => {
-      this.word = Object.assign({}, data);
+    this.store.pipe(select('words')).subscribe(res => {
+      this.word = Object.assign({}, res.currentWord);
 
       if (
         this.word.synonym.length ||
@@ -46,11 +78,10 @@ export class AddWordComponent implements OnInit {
       } else {
         this.addMoreDetails = false;
       }
+
+      this.words = (<any>Object).values(res.words);
     });
 
-    this.ngRedux.select('filteredWords').subscribe(res => {
-      this.words = (<any>Object).values(res);
-    });
     // Initialize our form
     this.addWordForm = this.form.group({
       word: ['', [Validators.required, this.validationService.wordValidator]],
@@ -70,19 +101,21 @@ export class AddWordComponent implements OnInit {
       })
     });
 
-    const autoCompleteSearch = document.querySelector('[formControlName="word"]');
-    Observable.fromEvent(autoCompleteSearch, 'keyup')
-      .do(event => {
-        const e = <any>event;
-        if (e.code === 'Backspace') {
-          this.search('');
-        }
-      })
-      .debounceTime(600)
-      .subscribe(e => {
-        const searchTerm = (<any>e).target.value;
-        this.search(searchTerm);
-      });
+    const autoCompleteSearch = document.querySelector(
+      '[formControlName="word"]'
+    );
+    // Observable.fromEvent(autoCompleteSearch, 'keyup')
+    //   .do(event => {
+    //     const e = <any>event;
+    //     if (e.code === 'Backspace') {
+    //       this.search('');
+    //     }
+    //   })
+    //   .debounceTime(600)
+    //   .subscribe(e => {
+    //     const searchTerm = (<any>e).target.value;
+    //     this.search(searchTerm);
+    //   });
   }
 
   saveWord() {
@@ -118,8 +151,10 @@ export class AddWordComponent implements OnInit {
     textArea.style.overflow = 'hidden';
     textArea.style.height = '116px';
     const height = textArea.style.height;
-    // tslint:disable-next-line:radix
-    if (textArea.scrollHeight >= parseInt(height.substr(0, height.length - 2))) {
+    if (
+      // tslint:disable-next-line:radix
+      textArea.scrollHeight >= parseInt(height.substr(0, height.length - 2))
+    ) {
       textArea.style.height = textArea.scrollHeight + 30 + 'px';
     }
   }

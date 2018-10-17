@@ -1,24 +1,27 @@
 // app/translate/translate.pipe.ts
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { TranslateService } from './translate.service'; // our translate service
+// import { TranslateService } from './translate.service'; // our translate service
 
 @Pipe({
   name: 'translate'
 })
 export class TranslatePipe implements PipeTransform {
-  constructor(private _translate: TranslateService) {}
+  constructor(
+    // private _translate: TranslateService
+    ) {}
 
   transform(value: string, args: any[]): any {
     if (!value) {
       return;
     }
 
-    let translatedValue = this._translate.instant(value);
+    // let translatedValue = this._translate.instant(value);
+    const translatedValue = '';
 
     if (args && args.length) {
       for (let x = 0; x < args.length; x++) {
-        translatedValue = translatedValue.replace('${' + x + '}', args[x]);
+        // translatedValue = translatedValue.replace('${' + x + '}', args[x]);
       }
     }
 
