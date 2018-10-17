@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { MultiComponent } from './../';
 import { WordService, ValidationService } from '../../services';
-// import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -10,6 +9,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/fromEvent';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'bw-add-word',
@@ -33,22 +33,24 @@ export class AddWordComponent implements OnInit {
     addedAt: '',
     updatedAt: ''
   };
-  words = [{
-    id: '',
-    lang: '',
-    word: '',
-    synonym: [],
-    type: '',
-    pronounce: '',
-    description: '',
-    soundUrl: '',
-    tags: [],
-    videos: [],
-    examples: [],
-    images: [],
-    addedAt: '',
-    updatedAt: ''
-  }];
+  words = [
+    {
+      id: '',
+      lang: '',
+      word: '',
+      synonym: [],
+      type: '',
+      pronounce: '',
+      description: '',
+      soundUrl: '',
+      tags: [],
+      videos: [],
+      examples: [],
+      images: [],
+      addedAt: '',
+      updatedAt: ''
+    }
+  ];
   autoCompleteResult: any = [];
   controlName = false;
   formSubmitted = false;
@@ -56,31 +58,30 @@ export class AddWordComponent implements OnInit {
 
   constructor(
     private _wordService: WordService,
-    // private ngRedux: NgRedux<IAppState>,
+    private store: Store<IAppState>,
     private validationService: ValidationService,
     private wordActions: WordActions,
     private form: FormBuilder
   ) {}
 
   ngOnInit() {
-    // this.ngRedux.select('currentWord').subscribe(data => {
-    //   this.word = Object.assign({}, data);
+    this.store.pipe(select('words')).subscribe(res => {
+      this.word = Object.assign({}, res.currentWord);
 
-    //   if (
-    //     this.word.synonym.length ||
-    //     this.word.images.length ||
-    //     this.word.examples.length ||
-    //     this.word.tags.length
-    //   ) {
-    //     this.addMoreDetails = true;
-    //   } else {
-    //     this.addMoreDetails = false;
-    //   }
-    // });
+      if (
+        this.word.synonym.length ||
+        this.word.images.length ||
+        this.word.examples.length ||
+        this.word.tags.length
+      ) {
+        this.addMoreDetails = true;
+      } else {
+        this.addMoreDetails = false;
+      }
 
-    // this.ngRedux.select('filteredWords').subscribe(res => {
-    //   this.words = (<any>Object).values(res);
-    // });
+      this.words = (<any>Object).values(res.words);
+    });
+
     // Initialize our form
     this.addWordForm = this.form.group({
       word: ['', [Validators.required, this.validationService.wordValidator]],
@@ -100,7 +101,9 @@ export class AddWordComponent implements OnInit {
       })
     });
 
-    const autoCompleteSearch = document.querySelector('[formControlName="word"]');
+    const autoCompleteSearch = document.querySelector(
+      '[formControlName="word"]'
+    );
     // Observable.fromEvent(autoCompleteSearch, 'keyup')
     //   .do(event => {
     //     const e = <any>event;
@@ -148,8 +151,10 @@ export class AddWordComponent implements OnInit {
     textArea.style.overflow = 'hidden';
     textArea.style.height = '116px';
     const height = textArea.style.height;
-    // tslint:disable-next-line:radix
-    if (textArea.scrollHeight >= parseInt(height.substr(0, height.length - 2))) {
+    if (
+      // tslint:disable-next-line:radix
+      textArea.scrollHeight >= parseInt(height.substr(0, height.length - 2))
+    ) {
       textArea.style.height = textArea.scrollHeight + 30 + 'px';
     }
   }

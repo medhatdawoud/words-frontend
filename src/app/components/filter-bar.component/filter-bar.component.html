@@ -18,8 +18,8 @@
       </div>
     </div>
   </div>
-  <div class="numberViewedWords" *ngIf="filteredWords && filteredWords.length < words.length">
-    <span *ngIf="filteredWords && filteredWords.length > 0">{{ 'filter_bar.number_of_viewed_words.some_words' | translate:[filteredWords.length, words.length] }}</span>
-    <span *ngIf="filteredWords && filteredWords.length == 0">{{ 'filter_bar.number_of_viewed_words.no_words' | translate }}</span>
+  <div class="numberViewedWords" *ngIf="filteredWords.length < words.length">
+    <span *ngIf="filteredWords.length > 0">{{ 'filter_bar.number_of_viewed_words.some_words' | translate:[filteredWords.length, words.length] }}</span>
+    <span *ngIf="filteredWords.length == 0">{{ 'filter_bar.number_of_viewed_words.no_words' | translate }}</span>
   </div>
 </div>

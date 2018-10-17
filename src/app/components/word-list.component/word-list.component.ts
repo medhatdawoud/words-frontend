@@ -22,7 +22,7 @@ export class WordListComponent implements OnInit {
   ngOnInit() {
     this.wordActions.getAllWords();
     this.store.pipe(select('words')).subscribe(res => {
-      this.words = (<any>Object).values(res.words);
+      this.words = (<any>Object).values(res.filteredWords);
       this.sort = Object.assign({}, this.sort, res.sort);
     });
   }
