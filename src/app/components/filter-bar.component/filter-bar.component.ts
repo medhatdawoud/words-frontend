@@ -9,22 +9,22 @@ import { Store, select } from '@ngrx/store';
 export class FilterBarComponent implements OnInit {
   sortWordsOptions = [
     {
-      label: 'filter_word.form.sort_by_newest',
+      label: 'Newest First',
       field: 'addedAt',
       direction: 'DESC'
     },
     {
-      label: 'filter_word.form.sort_by_oldest',
+      label: 'Oldest First',
       field: 'addedAt',
       direction: 'ASC'
     },
     {
-      label: 'filter_word.form.sort_by_word_az',
+      label: 'Word ASC',
       field: 'word',
       direction: 'ASC'
     },
     {
-      label: 'filter_word.form.sort_by_word_za',
+      label: 'Word DESC',
       field: 'word',
       direction: 'DESC'
     }

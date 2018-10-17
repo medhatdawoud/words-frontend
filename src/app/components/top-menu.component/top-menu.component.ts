@@ -10,15 +10,15 @@ import { Store, select } from '@ngrx/store';
 export class TopMenuComponent implements OnInit {
   languages = [
     {
-      name: 'top_menu.language.arabic',
+      name: 'العربية',
       code: 'ar_EG'
     },
     {
-      name: 'top_menu.language.english',
+      name: 'English',
       code: 'en_US'
     },
     {
-      name: 'top_menu.language.dutch',
+      name: 'Nederlands',
       code: 'nl_NL'
     }
   ];

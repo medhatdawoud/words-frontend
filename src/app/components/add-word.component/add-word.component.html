@@ -1,9 +1,7 @@
 <div class="collapsable-container bg-light hide">
   <span class="close" (click)="closeAddWord()">&times;</span>
   <div class="add-word-component">
-    <h1>
-      {{ 'add_word.form.new_word' | translate }}
-    </h1>
+    <h1 i18n>New Word</h1>
     <form name="formAddWord" action="" #form="ngForm" novalidate [formGroup]="addWordForm">
       <div class="form-group dropdown">
         <input type="text" formControlName="word" autocomplete="off" name="word" class="form-control"
@@ -14,13 +12,13 @@
             {{item.word}}
           </li>
         </ul>
-        <label for="">{{ 'add_word.form.word' | translate }}</label>
+        <label for="" i18n>Word</label>
         <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.word"></bw-error-message>
       </div>
       <div class="form-group">
         <input type="text" name="pronounce" autocomplete="off" formControlName="pronounce" class="form-control" [(ngModel)]="word.pronounce"
           required/>
-        <label for="">{{ 'add_word.form.pronounce' | translate }}</label>
+        <label for="" i18n>New Word</label>
         <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.pronounce"></bw-error-message>
       </div>
       <div class="form-group">
@@ -30,17 +28,17 @@
           </div>
           <textarea name="description" appLimitLength [maxLength]="30" [countDown]="30" id="resizableTextarea" formControlName="description"
             class="form-control textarea" [(ngModel)]="word.description" required rows="3"></textarea>
-          <label for="">{{ 'add_word.form.description' | translate }}</label>
+          <label for="" i18n>Description</label>
           <div class='textarea-countdown' id='textarea-countdown'>30</div>
         </div>
         <bw-error-message [control]="!addWordForm.pristine && addWordForm.controls.description"></bw-error-message>
       </div>
-      <button (click)="addMoreDetails = true" *ngIf="!addMoreDetails" class="btn btn-block btn-link">{{ 'add_word.form.expand_form.message' | translate }} </button>
+      <button (click)="addMoreDetails = true" *ngIf="!addMoreDetails" class="btn btn-block btn-link" i18n>Click to add more word details ...</button>
       <div class="add-more-details" *ngIf="addMoreDetails">
-        <bw-multi [(items)]="word.synonym" formGroupName="multiControl" label="add_word.form.synonym" type="synonym" maxLength="4"></bw-multi>
-        <bw-multi [(items)]="word.images" formGroupName="multiControl" label="add_word.form.images" type="images" maxLength="4" [submitted]="formSubmitted"></bw-multi>
-        <bw-multi [(items)]="word.examples" formGroupName="multiControl" label="add_word.form.examples" type="examples" maxLength="5" [submitted]="formSubmitted"></bw-multi>
-        <bw-multi [(items)]="word.tags" formGroupName="multiControl" label="add_word.form.tags" type="tags" maxLength="3" [submitted]="formSubmitted"></bw-multi>
+        <bw-multi [(items)]="word.synonym" formGroupName="multiControl" i18n-label label="Synonym" type="synonym" maxLength="4"></bw-multi>
+        <bw-multi [(items)]="word.images" formGroupName="multiControl" i18n-label label="Images" type="images" maxLength="4" [submitted]="formSubmitted"></bw-multi>
+        <bw-multi [(items)]="word.examples" formGroupName="multiControl" i18n-label label="Examples" type="examples" maxLength="5" [submitted]="formSubmitted"></bw-multi>
+        <bw-multi [(items)]="word.tags" formGroupName="multiControl" i18n-label label="Tags" type="tags" maxLength="3" [submitted]="formSubmitted"></bw-multi>
       </div>
       <!--<div class="form-group">
       <input type="text" name="type" class="form-control" [(ngModel)]="word.type" required />
@@ -55,10 +53,10 @@
       <label for="">Videos</label>
     </div>-->
       <div class="form-group text-right mt-4">
-        <button *ngIf="word.id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word.id)">
-          <i class="fa fa-times"></i> {{'add_word.form.delete_button' | translate}}</button>
-        <button class="btn btn-lg btn-primary" (click)="saveWord()">
-          <i class="fa fa-check"></i> {{'add_word.form.save_button' | translate}}</button>
+        <button *ngIf="word.id" class="btn btn-lg btn-danger pull-left" (click)="deleteWord(word.id)" i18n>
+          <i class="fa fa-times"></i> Delete</button>
+        <button class="btn btn-lg btn-primary" (click)="saveWord()" i18n>
+          <i class="fa fa-check"></i> Save word</button>
       </div>
     </form>
   </div>

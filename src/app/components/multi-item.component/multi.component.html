@@ -3,7 +3,7 @@
     <input type="text" [formControlName]="type" #itemInput (change)="changeState(item)" [ngClass]="{'filled' : filledValue}" name="item" class="form-control multi" [(ngModel)]="item" />
     <label for="{{label}}">{{label | translate}}</label>
     <span class="input-group-append">
-      <button class="btn btn-secondary" [disabled]="!item || !item.trim() ||  items?.length >= maxLength" type="button" (click)="addItem(item,type, itemInput)"><i class="fa fa-plus"></i> {{ 'add_word.form.add_button' | translate }}</button>
+      <button class="btn btn-secondary" [disabled]="!item || !item.trim() ||  items?.length >= maxLength" type="button" (click)="addItem(item,type, itemInput)" i18n><i class="fa fa-plus"></i> Add</button>
     </span>
   </div>
   <bw-error-message *ngIf="type == 'images'" [control]="multiControlForm.controls.images" [formSubmitted]="submitted"></bw-error-message>
@@ -14,8 +14,8 @@
   <div class="images-preview" *ngIf="type == 'images' && items.length > 0">
     <div class="one-image" *ngFor="let itm of items; let Index = index">
       <img [src]="itm">
-      <div class="remove" (click)="removeItem(Index)">
-        <div class="big">&times;</div> {{ 'add_word.form.remove_button' | translate }}</div>
+      <div class="remove" (click)="removeItem(Index)" i18n>
+        <span class="big">&times;</span> remove</div>
     </div>
   </div>
 
