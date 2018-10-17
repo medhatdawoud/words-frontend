@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
+// import { NgRedux } from '@angular-redux/store';
 
 import { IAppState, WordActions } from '../../store';
 
@@ -26,16 +26,16 @@ export class TopMenuComponent implements OnInit {
   selectedLang = null;
 
   constructor(
-    private ngRedux: NgRedux<IAppState>,
+    // private ngRedux: NgRedux<IAppState>,
     private wordActions: WordActions
   ) {}
 
   ngOnInit() {
-    this.ngRedux.select('language').subscribe(data => {
-      this.selectedLang = this.languages.filter(
-        item => item.code.split('_')[0] === data
-      )[0];
-    });
+    // this.ngRedux.select('language').subscribe(data => {
+    //   this.selectedLang = this.languages.filter(
+    //     item => item.code.split('_')[0] === data
+    //   )[0];
+    // });
   }
 
   changeSelectedLanguage(lang) {

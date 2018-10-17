@@ -1,16 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ApolloModule } from 'apollo-angular';
 import { HttpLinkModule } from 'apollo-angular-link-http';
 
-import { NgRedux, NgReduxModule } from '@angular-redux/store';
-import { IAppState, store, WordActions } from './store';
+// import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, WordActions } from './store';
 
-import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translate';
+// import { StoreModule } from '@ngrx/store';
+
+import {
+  // TRANSLATION_PROVIDERS,
+  TranslatePipe,
+  // TranslateService
+} from './translate';
 
 import { AppComponent } from './app.component';
 import {
@@ -43,26 +49,26 @@ import { OrderByPipe } from './pipes';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
     FormsModule,
-    NgReduxModule,
-    ReactiveFormsModule,
+    // NgReduxModule,
+    ReactiveFormsModule
   ],
   providers: [
     WordService,
     WordActions,
     ValidationService,
-    TRANSLATION_PROVIDERS,
-    TranslateService
+    // TRANSLATION_PROVIDERS,
+    // TranslateService
   ],
-  bootstrap: [AppComponent],
-
+  bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.provideStore(store);
+  constructor(
+    // ngRedux: NgRedux<IAppState>
+    ) {
+    // ngRedux.provideStore(store);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WordActions, IAppState } from '../../store';
-import { NgRedux } from '@angular-redux/store';
+// import { NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'bw-filter-bar',
@@ -36,16 +36,16 @@ export class FilterBarComponent implements OnInit {
 
   constructor(
     private wordActions: WordActions,
-    private ngRedux: NgRedux<IAppState>
+    // private ngRedux: NgRedux<IAppState>
   ) {}
 
   ngOnInit() {
-    this.ngRedux.select('filteredWords').subscribe(res => {
-      this.filteredWords = (<any>Object).values(res);
-    });
-    this.ngRedux.select('words').subscribe(res => {
-      this.words = (<any>Object).values(res);
-    });
+    // this.ngRedux.select('filteredWords').subscribe(res => {
+    //   this.filteredWords = (<any>Object).values(res);
+    // });
+    // this.ngRedux.select('words').subscribe(res => {
+    //   this.words = (<any>Object).values(res);
+    // });
     this.selectSorting = this.sortWordsOptions[1];
   }
 

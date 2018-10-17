@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 
 import { IAppState } from '../store';
-import { NgRedux } from '@angular-redux/store';
+// import { NgRedux } from '@angular-redux/store';
 
 @Injectable()
 export class ValidationService {
   static word: any;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {
-    ngRedux.select('currentWord')
-      .subscribe(data => {
-        ValidationService.word = Object.assign({}, data);
-      });
+  constructor(
+    // private ngRedux: NgRedux<IAppState>
+    ) {
+    // ngRedux.select('currentWord')
+    //   .subscribe(data => {
+    //     ValidationService.word = Object.assign({}, data);
+    //   });
   }
 
   // tslint:disable-next-line:member-ordering

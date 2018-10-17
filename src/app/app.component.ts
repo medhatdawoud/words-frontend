@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
+// import { NgRedux } from '@angular-redux/store';
 import {
   AddWordComponent,
   WordListComponent,
@@ -21,9 +21,9 @@ import { TranslateService } from './translate';
 export class AppComponent implements OnInit {
   constructor(
     private apollo: Apollo,
-    private ngRedux: NgRedux<IAppState>,
+    // private ngRedux: NgRedux<IAppState>,
     private httpLink: HttpLink,
-    private translate: TranslateService
+    // private translate: TranslateService
   ) {
     apollo.create({
       link: httpLink.create({
@@ -34,16 +34,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ngRedux.select('language').subscribe(lang => {
-      this.selectLang(<any>lang);
-    });
+    // this.ngRedux.select('language').subscribe(lang => {
+    //   this.selectLang(<any>lang);
+    // });
   }
 
   isCurrentLang(lang: string) {
-    return lang === this.translate.currentLang;
+    // return lang === this.translate.currentLang;
   }
 
   selectLang(lang: string) {
-    this.translate.use(lang);
+    // this.translate.use(lang);
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MultiComponent } from './../';
 import { WordService, ValidationService } from '../../services';
-import { NgRedux } from '@angular-redux/store';
+// import { NgRedux } from '@angular-redux/store';
 import { IAppState, WordActions } from '../../store';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -17,8 +17,38 @@ import 'rxjs/add/observable/fromEvent';
 })
 export class AddWordComponent implements OnInit {
   public addWordForm: FormGroup;
-  word: any;
-  words = [];
+  word: any = {
+    id: '',
+    lang: '',
+    word: '',
+    synonym: [],
+    type: '',
+    pronounce: '',
+    description: '',
+    soundUrl: '',
+    tags: [],
+    videos: [],
+    examples: [],
+    images: [],
+    addedAt: '',
+    updatedAt: ''
+  };
+  words = [{
+    id: '',
+    lang: '',
+    word: '',
+    synonym: [],
+    type: '',
+    pronounce: '',
+    description: '',
+    soundUrl: '',
+    tags: [],
+    videos: [],
+    examples: [],
+    images: [],
+    addedAt: '',
+    updatedAt: ''
+  }];
   autoCompleteResult: any = [];
   controlName = false;
   formSubmitted = false;
@@ -26,31 +56,31 @@ export class AddWordComponent implements OnInit {
 
   constructor(
     private _wordService: WordService,
-    private ngRedux: NgRedux<IAppState>,
+    // private ngRedux: NgRedux<IAppState>,
     private validationService: ValidationService,
     private wordActions: WordActions,
     private form: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.ngRedux.select('currentWord').subscribe(data => {
-      this.word = Object.assign({}, data);
+    // this.ngRedux.select('currentWord').subscribe(data => {
+    //   this.word = Object.assign({}, data);
 
-      if (
-        this.word.synonym.length ||
-        this.word.images.length ||
-        this.word.examples.length ||
-        this.word.tags.length
-      ) {
-        this.addMoreDetails = true;
-      } else {
-        this.addMoreDetails = false;
-      }
-    });
+    //   if (
+    //     this.word.synonym.length ||
+    //     this.word.images.length ||
+    //     this.word.examples.length ||
+    //     this.word.tags.length
+    //   ) {
+    //     this.addMoreDetails = true;
+    //   } else {
+    //     this.addMoreDetails = false;
+    //   }
+    // });
 
-    this.ngRedux.select('filteredWords').subscribe(res => {
-      this.words = (<any>Object).values(res);
-    });
+    // this.ngRedux.select('filteredWords').subscribe(res => {
+    //   this.words = (<any>Object).values(res);
+    // });
     // Initialize our form
     this.addWordForm = this.form.group({
       word: ['', [Validators.required, this.validationService.wordValidator]],
@@ -71,18 +101,18 @@ export class AddWordComponent implements OnInit {
     });
 
     const autoCompleteSearch = document.querySelector('[formControlName="word"]');
-    Observable.fromEvent(autoCompleteSearch, 'keyup')
-      .do(event => {
-        const e = <any>event;
-        if (e.code === 'Backspace') {
-          this.search('');
-        }
-      })
-      .debounceTime(600)
-      .subscribe(e => {
-        const searchTerm = (<any>e).target.value;
-        this.search(searchTerm);
-      });
+    // Observable.fromEvent(autoCompleteSearch, 'keyup')
+    //   .do(event => {
+    //     const e = <any>event;
+    //     if (e.code === 'Backspace') {
+    //       this.search('');
+    //     }
+    //   })
+    //   .debounceTime(600)
+    //   .subscribe(e => {
+    //     const searchTerm = (<any>e).target.value;
+    //     this.search(searchTerm);
+    //   });
   }
 
   saveWord() {

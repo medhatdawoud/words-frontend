@@ -9,7 +9,7 @@
         <input type="text" formControlName="word" autocomplete="off" name="word" class="form-control"
          aria-haspopup="true" aria-expanded="true" [(ngModel)]="word.word" required />
         <ul class="dropdown-menu dropdown-autocomplete" aria-labelledby="dropdownMenuButton" 
-            [ngClass]="{'show' : autoCompleteResult.length > 0}">
+            [ngClass]="{'show' : autoCompleteResult && autoCompleteResult.length > 0}">
           <li *ngFor="let item of autoCompleteResult" (click)="loadWord(item.id)">
             {{item.word}}
           </li>
