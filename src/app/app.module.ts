@@ -9,8 +9,9 @@ import { HttpLinkModule } from 'apollo-angular-link-http';
 
 // import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, WordActions } from './store';
+import {initialState, reducer} from './store/reducer';
 
-// import { StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 
 import {
   // TRANSLATION_PROVIDERS,
@@ -32,7 +33,7 @@ import { LimitLengthDirective } from './directives';
 
 import { OrderByPipe } from './pipes';
 
-// TODO: Update anguar to version 5
+// TODO: Update anguar to version 6
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { OrderByPipe } from './pipes';
     HttpLinkModule,
     FormsModule,
     // NgReduxModule,
+    StoreModule.forRoot({words: reducer}),
     ReactiveFormsModule
   ],
   providers: [

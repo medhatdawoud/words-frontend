@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { NgRedux } from '@angular-redux/store';
+import { Store } from '@ngrx/store';
 import { IAppState } from './IAppState';
 import { WordService } from '../services';
 import types from './constants';
@@ -9,6 +10,7 @@ import { initialState } from './reducer';
 export class WordActions {
   constructor(
     // private ngRedux: NgRedux<IAppState>,
+    private store: Store<IAppState>,
     private wordService: WordService
   ) {}
 
@@ -22,6 +24,10 @@ export class WordActions {
   getAllWords() {
     this.wordService.getAllWords().subscribe(res => {
       const words = (<any>res).data.words;
+      this.store.dispatch({
+        type: types.GET_ALL_WORDS_SUCCEED,
+        payload: words
+      });
       // this.ngRedux.dispatch({
       //   type: types.GET_ALL_WORDS_SUCCEED,
       //   payload: words

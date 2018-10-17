@@ -1,53 +1,30 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IAppState, WordActions, Word } from '../../store';
-// import { NgRedux, select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { WordService } from '../../services';
 import { OrderByPipe } from '../../pipes';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'bw-word-list',
   templateUrl: './word-list.component.html'
 })
 export class WordListComponent implements OnInit {
-  words = [{
-    id: '',
-    lang: '',
-    word: '',
-    synonym: [],
-    type: '',
-    pronounce: '',
-    description: '',
-    soundUrl: '',
-    tags: [],
-    videos: [],
-    examples: [],
-    images: [],
-    addedAt: '',
-    updatedAt: ''
-  }];
-  sort = [
-    {
-      label: 'Oldest first',
-      field: 'addedAt',
-      direction: 'ASC'
-    }
-  ];
+  words = [];
+  sort = null;
 
   constructor(
-    // private ngRedux: NgRedux<IAppState>,
+    private store: Store<IAppState>,
     private wordActions: WordActions,
     private wordService: WordService
   ) {}
 
   ngOnInit() {
-    // this.wordActions.getAllWords();
-    // this.ngRedux.select('filteredWords').subscribe(res => {
-    //   this.words = (<any>Object).values(res);
-    // });
-    // this.ngRedux.select('sort').subscribe(res => {
-    //   this.sort = Object.assign({}, this.sort, res);
-    // });
+    this.wordActions.getAllWords();
+    this.store.pipe(select('words')).subscribe(res => {
+      this.words = (<any>Object).values(res.words);
+      this.sort = Object.assign({}, this.sort, res.sort);
+    });
   }
 
   editWord(word) {
@@ -77,7 +54,7 @@ export class WordListComponent implements OnInit {
       const wordTagsModal = document.getElementById('wordTags');
 
       if (word.word !== '') {
-        wordNameModal.innerHTML +=  word.word;
+        wordNameModal.innerHTML += word.word;
       } else {
         wordNameModal.innerHTML = '';
       }
