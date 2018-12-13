@@ -29,7 +29,7 @@ export class FilterBarComponent implements OnInit {
       direction: 'DESC'
     }
   ];
-
+  searchTerm;
   selectSorting = null;
   words: any;
   filteredWords: any;
